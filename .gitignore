@@ -7,10 +7,10 @@ env/
 .ipynb_checkpoints/
 
 # Data (do not commit if licence forbids redistribution)
-data/raw/*
-data/processed/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
+# data/raw/*
+# data/processed/*
+# !data/raw/.gitkeep
+# !data/processed/.gitkeep
 
 # Secrets
 .env
