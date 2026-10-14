@@ -1,0 +1,59 @@
+===== Baseline (Dummy) (validation year 2022, n=244) =====
+              precision    recall  f1-score   support
+
+ not_at_risk      0.578     1.000     0.732       141
+     at_risk      0.000     0.000     0.000       103
+
+    accuracy                          0.578       244
+   macro avg      0.289     0.500     0.366       244
+weighted avg      0.334     0.578     0.423       244
+
+===== Baseline (Repeat last year) (validation year 2022, n=244) =====
+              precision    recall  f1-score   support
+
+ not_at_risk      0.907     0.901     0.904       141
+     at_risk      0.865     0.874     0.870       103
+
+    accuracy                          0.889       244
+   macro avg      0.886     0.887     0.887       244
+weighted avg      0.890     0.889     0.889       244
+
+===== Logistic Regression (validation year 2022, n=244) =====
+              precision    recall  f1-score   support
+
+ not_at_risk      0.907     0.901     0.904       141
+     at_risk      0.865     0.874     0.870       103
+
+    accuracy                          0.889       244
+   macro avg      0.886     0.887     0.887       244
+weighted avg      0.890     0.889     0.889       244
+
+===== Random Forest (validation year 2022, n=244) =====
+              precision    recall  f1-score   support
+
+ not_at_risk      0.900     0.894     0.897       141
+     at_risk      0.856     0.864     0.860       103
+
+    accuracy                          0.881       244
+   macro avg      0.878     0.879     0.878       244
+weighted avg      0.881     0.881     0.881       244
+
+===== MLP (validation year 2022, n=244) =====
+              precision    recall  f1-score   support
+
+ not_at_risk      0.912     0.879     0.895       141
+     at_risk      0.843     0.883     0.863       103
+
+    accuracy                          0.881       244
+   macro avg      0.877     0.881     0.879       244
+weighted avg      0.883     0.881     0.881       244
+
+===== Residual Tabular NN (validation year 2022, n=244) =====
+              precision    recall  f1-score   support
+
+ not_at_risk      0.912     0.879     0.895       141
+     at_risk      0.843     0.883     0.863       103
+
+    accuracy                          0.881       244
+   macro avg      0.877     0.881     0.879       244
+weighted avg      0.883     0.881     0.881       244

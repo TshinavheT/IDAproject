@@ -1,0 +1,77 @@
+{
+ "champion": "Logistic Regression",
+ "search_method": "Optuna TPE (seed 42)",
+ "n_trials": 60,
+ "search_space": {
+  "C": "log-uniform 0.001 - 100 (inverse regularisation strength)",
+  "penalty": "l2 | l1 | elasticnet",
+  "l1_ratio": "0.05 - 0.95 (elasticnet only)",
+  "class_weight": "balanced | none",
+  "scaler": "standard | robust (robust is less sensitive to the large outliers found in Q2.1)"
+ },
+ "scoring_rule": "mean macro-F1 over walk-forward folds 2019, 2020, 2021 (training years only)",
+ "best_params": {
+  "C": 0.07415928995129129,
+  "penalty": "l1",
+  "class_weight": "balanced",
+  "scaler": "standard"
+ },
+ "best_cv_macro_f1": 0.8742530051638111,
+ "final_fit_years": "2018-2022",
+ "test_year": 2023,
+ "n_test": 240,
+ "test_metrics": {
+  "accuracy": 0.9083333333333333,
+  "macro_f1": 0.9059762091317045,
+  "weighted_f1": 0.9080852149963198,
+  "precision_at_risk": 0.9090909090909091,
+  "recall_at_risk": 0.8737864077669902,
+  "roc_auc": 0.8962511515838707,
+  "pr_auc": 0.8624864379227364
+ },
+ "repeat_last_year_test_metrics": {
+  "accuracy": 0.9083333333333333,
+  "macro_f1": 0.9059762091317045,
+  "weighted_f1": 0.9080852149963198,
+  "precision_at_risk": 0.9090909090909091,
+  "recall_at_risk": 0.8737864077669902,
+  "roc_auc": 0.904046488555028,
+  "pr_auc": 0.8485179464548396
+ },
+ "test_confusion": [
+  [
+   128,
+   9
+  ],
+  [
+   13,
+   90
+  ]
+ ],
+ "pre_post": [
+  {
+   "config": "Default (Q3/Q4)",
+   "cv_macro_f1_mean": 0.87,
+   "cv_macro_f1_std": 0.0229,
+   "val_accuracy": 0.8893,
+   "val_macro_f1": 0.8867,
+   "val_weighted_f1": 0.8894,
+   "val_precision_at_risk": 0.8654,
+   "val_recall_at_risk": 0.8738,
+   "val_roc_auc": 0.9284,
+   "val_pr_auc": 0.9218
+  },
+  {
+   "config": "Tuned (Optuna)",
+   "cv_macro_f1_mean": 0.8743,
+   "cv_macro_f1_std": 0.0246,
+   "val_accuracy": 0.8893,
+   "val_macro_f1": 0.8867,
+   "val_weighted_f1": 0.8894,
+   "val_precision_at_risk": 0.8654,
+   "val_recall_at_risk": 0.8738,
+   "val_roc_auc": 0.919,
+   "val_pr_auc": 0.9098
+  }
+ ]
+}

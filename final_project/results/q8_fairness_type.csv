@@ -1,0 +1,4 @@
+category,n,actual_at_risk,actual_share,flagged_share,accuracy,recall_at_risk,false_positive_rate,reliable
+Local,190,88,0.4631578947368421,0.4473684210526316,0.8894736842105263,0.8636363636363636,0.08823529411764706,True
+District,42,11,0.2619047619047619,0.2619047619047619,1.0,1.0,0.0,True
+Metro,8,4,0.5,0.375,0.875,0.75,0.0,False

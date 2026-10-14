@@ -1,0 +1,65 @@
+{
+ "test_year": "2023 figures -> 2024 audit",
+ "n_test": 240,
+ "bootstrap_resamples": 2000,
+ "metrics_ci95": {
+  "accuracy": {
+   "estimate": 0.9083333333333333,
+   "ci95_low": 0.8708333333333333,
+   "ci95_high": 0.9416666666666667
+  },
+  "macro_f1": {
+   "estimate": 0.9059762091317045,
+   "ci95_low": 0.8660850400385284,
+   "ci95_high": 0.9412587412587412
+  },
+  "recall_at_risk": {
+   "estimate": 0.8737864077669902,
+   "ci95_low": 0.8020807549504951,
+   "ci95_high": 0.9339622641509434
+  },
+  "precision_at_risk": {
+   "estimate": 0.9090909090909091,
+   "ci95_low": 0.8505720270705768,
+   "ci95_high": 0.9629629629629629
+  },
+  "roc_auc": {
+   "estimate": 0.8962511515838707,
+   "ci95_low": 0.8450645507812499,
+   "ci95_high": 0.9398254530476796
+  }
+ },
+ "brier_score": 0.08755671728270409,
+ "calibration_bins": [
+  {
+   "mean_predicted": 0.1269742406438075,
+   "observed_at_risk": 0.08333333333333333
+  },
+  {
+   "mean_predicted": 0.14593037453709862,
+   "observed_at_risk": 0.10416666666666667
+  },
+  {
+   "mean_predicted": 0.1953572989924471,
+   "observed_at_risk": 0.14583333333333334
+  },
+  {
+   "mean_predicted": 0.837431860034984,
+   "observed_at_risk": 0.9166666666666666
+  },
+  {
+   "mean_predicted": 0.8531592032324019,
+   "observed_at_risk": 0.8958333333333334
+  }
+ ],
+ "status_changes_in_test": 22,
+ "accuracy_on_status_changes": 0.0,
+ "accuracy_on_stable": 1.0,
+ "forecast_2025": {
+  "n": 245,
+  "flagged": 106,
+  "close_calls_40_60": 0,
+  "forecast_status_changes": 0,
+  "expected_status_changes_at_test_rate": 22.458333333333332
+ }
+}

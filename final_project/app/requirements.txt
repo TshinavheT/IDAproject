@@ -1,0 +1,10 @@
+# Dashboard-only dependencies (Streamlit Community Cloud reads this file next to app/app.py).
+# The app loads the saved Logistic Regression pipeline, so it needs no PyTorch.
+# scikit-learn must match the version that saved models/final_pipeline.joblib.
+streamlit==1.65.0
+pandas==3.0.6
+numpy==2.5.4
+scikit-learn==1.9.1
+scipy==1.18.1
+joblib==1.6.0
+plotly==7.1.0

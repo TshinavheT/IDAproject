@@ -1,0 +1,26 @@
+{
+ "champion": "Logistic Regression (tuned, Q5)",
+ "comparator": "MLP (Q3 configuration)",
+ "fit_years": "2018-2022",
+ "test_year": 2023,
+ "n_test": 240,
+ "table": {
+  "both_correct": 217,
+  "champion_only_correct": 1,
+  "comparator_only_correct": 0,
+  "both_wrong": 22
+ },
+ "discordant_pairs": 1,
+ "H0": "The two models have the same error rate on these municipalities (P(b) = P(c)).",
+ "H1": "The two models have different error rates (P(b) != P(c)), two-sided.",
+ "alpha": 0.05,
+ "test_version": "exact binomial (b + c < 25)",
+ "statistic": 0.0,
+ "p_value": 1.0,
+ "reject_H0": false,
+ "champion_macro_f1": 0.9059762091317045,
+ "comparator_macro_f1": 0.9015674316589097,
+ "champion_accuracy": 0.9083333333333333,
+ "comparator_accuracy": 0.9041666666666667,
+ "exact_binomial_p_value": 1.0
+}

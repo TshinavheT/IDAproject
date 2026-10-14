@@ -1,5 +1,9 @@
 # IDAproject — Data Science for Better Service Delivery in South Africa
 
+> **Latest complete version:** see [`final_project/`](final_project/README.md) — the corrected Question 3,
+> Questions 4–8, the dashboard (`final_project/app/`), report sections and the reproducible pipeline
+> (`python run_all.py`). The original Question 2 and Question 3 work below is unchanged.
+
 IDA117V Introduction to Data Science group project (S2 2026).
 
 **Central challenge:** How can responsible data science help a South African public-service stakeholder identify need, prioritise limited resources, or improve the reliability and reach of a service?
