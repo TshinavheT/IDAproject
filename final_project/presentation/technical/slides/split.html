@@ -1,0 +1,40 @@
+<section id="split" data-transition="fade" style="background:#F1F4F8;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">04 · Leakage-safe split</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">Split by time, so the model only learns from the past</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:12px">
+<div style="flex:3.6;display:flex;flex-direction:column;gap:6px;background:#3B6FEB;border-radius:20px;padding:28px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:30px;font-weight:600;color:#F7F9FD">Train · 2018–2021</p>
+<p style="font-size:24px;color:#E3EAFB">950 rows · fit and tune</p>
+</div>
+<div style="flex:1.5;display:flex;flex-direction:column;gap:6px;background:#F5A524;border-radius:20px;padding:28px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:30px;font-weight:600;color:#2E3546">Validate 2022</p>
+<p style="font-size:24px;color:#2E3546">244 · pick champion</p>
+</div>
+<div style="flex:1.5;display:flex;flex-direction:column;gap:6px;background:#C42D58;border-radius:20px;padding:28px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:30px;font-weight:600;color:#FBF4F6">Test 2023</p>
+<p style="font-size:24px;color:#FBE3EA">240 · used once</p>
+</div>
+<div style="flex:1.5;display:flex;flex-direction:column;gap:6px;background:#E6EBF2;border:3px dashed #0D7C72;border-radius:20px;padding:25px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:30px;font-weight:600;color:#0D7C72">Forecast 2024</p>
+<p style="font-size:24px;color:#2E3546">245 · 2025 audit</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#2E3546">Rules we kept</h3>
+<ul style="font-size:28px;line-height:1.5;color:#4A5568">
+<li>Imputation, scaling and encoding learned on training years only</li>
+<li>Year, identifiers and raw opinion columns excluded</li>
+<li>Tuning scored by walk-forward CV inside 2018–2021</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FBEFF2;border-radius:24px;padding:36px">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#C42D58">A correction we made</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Our first run used a random split and the year as a feature, letting the future inform the past. We re-ran every model on the time split; the champion changed from Random Forest to Logistic Regression.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 5</p>
+<aside>Presenter: [data lead]. Because we predict the future, we split by year. The model learns from 2018 to 2021, we pick the champion on 2022, and 2023 is the held-out test year, loaded exactly once at the very end. 2024 figures give a genuine forecast of the 2025 audit. Be open about the correction: the first run used a random split, which leaks future information; re-running on the time split is why the champion changed.</aside>
+</section>

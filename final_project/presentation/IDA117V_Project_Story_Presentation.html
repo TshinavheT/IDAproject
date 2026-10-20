@@ -1,0 +1,367 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Audit Risk: Why, What and How</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&display=swap">
+<style>
+@page { size: 1920px 1080px; margin: 0 }
+* { margin: 0; box-sizing: border-box }
+html, body { background: #777 }
+section { width: 1920px; height: 1080px; position: relative; overflow: hidden; break-after: page }
+section:last-of-type { break-after: auto }
+aside { display: none }
+h1 { font-size: 96px } h2 { font-size: 64px } h3 { font-size: 44px; font-weight: 600 } p { font-size: 32px; line-height: 1.4 }
+ul, ol { padding-left: 1.2em }
+table { border-collapse: collapse; width: 100% }
+th, td { padding: 0.35em 0.6em; border-bottom: 1px solid rgba(0,0,0,0.12); vertical-align: top }
+img { display: block }
+svg { display: block; flex: none }
+</style></head><body>
+<section id="cover" data-transition="fade" style="background:#1F2A44;color:#F6F4EF;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:44px">
+<div style="position:absolute;left:1360px;top:0px;width:560px;height:1080px;background:linear-gradient(160deg, #2B3A5C, #1F2A44)"></div>
+<div style="position:absolute;left:1480px;top:240px;width:320px;height:320px;border:16px solid #E2683C;border-radius:50%"></div>
+<div style="position:absolute;left:1560px;top:480px;width:200px;height:200px;background:#2E8B83;border-radius:50%;opacity:0.85"></div>
+<p style="font-size:28px;font-weight:700;color:#F2A27F;letter-spacing:3px;text-transform:uppercase">IDA117V group project</p>
+<h1 style="font-family:'Libre Baskerville', Georgia, serif;font-size:96px;font-weight:400;line-height:1.15;color:#F6F4EF;width:1180px">Seeing municipal audit failure coming</h1>
+<p style="font-size:40px;line-height:1.35;color:#C8CFDC;width:1150px">Why we chose this problem, what our product solves, and how it works</p>
+<p style="font-size:28px;color:#C8CFDC">[Group number] · [Member names] · October 2026</p>
+
+</section>
+
+<section id="problem" data-transition="fade" style="background:#F6F4EF;color:#1F2A44;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#C2410C;letter-spacing:2px;text-transform:uppercase">The problem</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:60px;font-weight:400;line-height:1.15;color:#1F2A44">Municipal finances fail quietly, and the audit tells us too late</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:center">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#EDE9E0;border-radius:20px;padding:32px">
+<svg viewBox="0 0 24 24" style="color:#C2410C;width:48px;height:48px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Warning"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5M12 18v.5"/></svg>
+<p style="font-size:26px;line-height:1.4;color:#1F2A44">Poor financial management: weak cash, low debt collection, irregular spending</p>
+</div>
+<svg viewBox="0 0 100 50" preserveAspectRatio="none" style="width:56px;height:28px;" aria-label="arrow"><path d="M0 16h58V0l42 25-42 25V34H0z" fill="#C9C2B3"/></svg>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#EDE9E0;border-radius:20px;padding:32px">
+<svg viewBox="0 0 24 24" style="color:#C2410C;width:48px;height:48px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Wrench"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>
+<p style="font-size:26px;line-height:1.4;color:#1F2A44">Unpaid suppliers and neglected infrastructure</p>
+</div>
+<svg viewBox="0 0 100 50" preserveAspectRatio="none" style="width:56px;height:28px;" aria-label="arrow"><path d="M0 16h58V0l42 25-42 25V34H0z" fill="#C9C2B3"/></svg>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#EDE9E0;border-radius:20px;padding:32px">
+<svg viewBox="0 0 24 24" style="color:#C2410C;width:48px;height:48px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Home"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+<p style="font-size:26px;line-height:1.4;color:#1F2A44">Water, electricity and refuse services fail for residents</p>
+</div>
+<svg viewBox="0 0 100 50" preserveAspectRatio="none" style="width:56px;height:28px;" aria-label="arrow"><path d="M0 16h58V0l42 25-42 25V34H0z" fill="#C9C2B3"/></svg>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1F2A44;border-radius:20px;padding:32px">
+<svg viewBox="0 0 24 24" style="color:#F2A27F;width:48px;height:48px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Clock"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+<p style="font-size:26px;line-height:1.4;color:#F6F4EF">The audit result arrives after the year closes, so support comes after the damage</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;align-items:center">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:112px;font-weight:700;color:#C2410C;line-height:1">45.5%</p>
+<p style="font-size:32px;line-height:1.4;color:#4A5263;width:1150px">of the 1,434 municipality-years in our data were followed by a poor audit outcome the next year: qualified, adverse, disclaimer or outstanding.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Seeing municipal audit failure coming · 2</p>
+
+</section>
+
+<section id="why" data-transition="fade" style="background:#EDE9E0;color:#1F2A44;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#C2410C;letter-spacing:2px;text-transform:uppercase">Why we chose this project</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:60px;font-weight:400;line-height:1.15;color:#1F2A44">Four reasons this problem was worth solving</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+<div style="display:flex;flex-direction:row;gap:28px;background:#F6F4EF;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:56px;font-weight:700;color:#C2410C;line-height:1;width:60px">1</p>
+<div style="display:flex;flex-direction:column;gap:10px;flex:1">
+<h3 style="font-size:32px;font-weight:700;color:#1F2A44">A real service-delivery problem</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5263">Audit outcomes show whether a municipality can manage the money behind basic services.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px;background:#F6F4EF;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:56px;font-weight:700;color:#C2410C;line-height:1;width:60px">2</p>
+<div style="display:flex;flex-direction:column;gap:10px;flex:1">
+<h3 style="font-size:32px;font-weight:700;color:#1F2A44">A clear decision-maker</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5263">National Treasury and the provincial treasuries decide each year where scarce support goes.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px;background:#F6F4EF;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:56px;font-weight:700;color:#C2410C;line-height:1;width:60px">3</p>
+<div style="display:flex;flex-direction:column;gap:10px;flex:1">
+<h3 style="font-size:32px;font-weight:700;color:#1F2A44">Authoritative, open data</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5263">Treasury’s Municipal Money covers every municipality, is free to reuse and holds no personal data.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px;background:#F6F4EF;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:56px;font-weight:700;color:#C2410C;line-height:1;width:60px">4</p>
+<div style="display:flex;flex-direction:column;gap:10px;flex:1">
+<h3 style="font-size:32px;font-weight:700;color:#1F2A44">A measurable outcome</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5263">The Auditor-General publishes an opinion every year, so every prediction can be checked against reality.</p>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Seeing municipal audit failure coming · 3</p>
+
+</section>
+
+<section id="pains" data-transition="fade" style="background:#F6F4EF;color:#1F2A44;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#C2410C;letter-spacing:2px;text-transform:uppercase">What it solves</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:60px;font-weight:400;line-height:1.15;color:#1F2A44">Four problems Treasury faces today</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:row;gap:24px;padding:0px 32px">
+<p style="flex:1;font-size:24px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:2px">Problem</p>
+<div style="width:56px"></div>
+<p style="flex:1.3;font-size:24px;font-weight:700;color:#0F766E;text-transform:uppercase;letter-spacing:2px">What our product does</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;background:#EDE9E0;border-radius:20px;padding:28px 32px">
+<p style="flex:1;font-size:30px;font-weight:600;color:#1F2A44">Support arrives after the damage</p>
+<svg viewBox="0 0 100 50" preserveAspectRatio="none" style="width:56px;height:28px;" aria-label="arrow"><path d="M0 16h58V0l42 25-42 25V34H0z" fill="#E2683C"/></svg>
+<p style="flex:1.3;font-size:28px;line-height:1.35;color:#4A5263">Forecasts each municipality’s next audit from figures already published</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;background:#EDE9E0;border-radius:20px;padding:28px 32px">
+<p style="flex:1;font-size:30px;font-weight:600;color:#1F2A44">Information is scattered</p>
+<svg viewBox="0 0 100 50" preserveAspectRatio="none" style="width:56px;height:28px;" aria-label="arrow"><path d="M0 16h58V0l42 25-42 25V34H0z" fill="#E2683C"/></svg>
+<p style="flex:1.3;font-size:28px;line-height:1.35;color:#4A5263">One profile per municipality: audit history, finances, peers and norms</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;background:#EDE9E0;border-radius:20px;padding:28px 32px">
+<p style="flex:1;font-size:30px;font-weight:600;color:#1F2A44">Prioritisation is inconsistent</p>
+<svg viewBox="0 0 100 50" preserveAspectRatio="none" style="width:56px;height:28px;" aria-label="arrow"><path d="M0 16h58V0l42 25-42 25V34H0z" fill="#E2683C"/></svg>
+<p style="flex:1.3;font-size:28px;line-height:1.35;color:#4A5263">The same documented risk score and ranking for all 245 municipalities</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;background:#EDE9E0;border-radius:20px;padding:28px 32px">
+<p style="flex:1;font-size:30px;font-weight:600;color:#1F2A44">Decisions are hard to explain</p>
+<svg viewBox="0 0 100 50" preserveAspectRatio="none" style="width:56px;height:28px;" aria-label="arrow"><path d="M0 16h58V0l42 25-42 25V34H0z" fill="#E2683C"/></svg>
+<p style="flex:1.3;font-size:28px;line-height:1.35;color:#4A5263">Every score comes with plain-language reasons and Treasury norms</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Seeing municipal audit failure coming · 4</p>
+
+</section>
+
+<section id="solution" data-transition="fade" style="background:#1F2A44;color:#F6F4EF;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:64px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:700;color:#F2A27F;letter-spacing:2px;text-transform:uppercase">Our solution</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:72px;font-weight:400;line-height:1.2;color:#F6F4EF;width:1500px">A forecast of every municipality’s next audit, and a dashboard to act on it</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:64px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;border-top:4px solid #F2A27F;padding:28px 0px 0px 0px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:88px;font-weight:700;color:#F6F4EF;line-height:1">245</p>
+<p style="font-size:28px;line-height:1.35;color:#C8CFDC">municipalities forecast for the 2025 audit</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;border-top:4px solid #F2A27F;padding:28px 0px 0px 0px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:88px;font-weight:700;color:#F2A27F;line-height:1">106</p>
+<p style="font-size:28px;line-height:1.35;color:#C8CFDC">flagged at risk, 102 of them at 80% or more</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;border-top:4px solid #F2A27F;padding:28px 0px 0px 0px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:88px;font-weight:700;color:#F6F4EF;line-height:1">90.8%</p>
+<p style="font-size:28px;line-height:1.35;color:#C8CFDC">correct on a year the model never saw</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#A3ACBD">Seeing municipal audit failure coming · 5</p>
+
+</section>
+
+<section id="how" data-transition="fade" style="background:#F6F4EF;color:#1F2A44;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#C2410C;letter-spacing:2px;text-transform:uppercase">How it works</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:60px;font-weight:400;line-height:1.15;color:#1F2A44">From public data to a decision in five steps</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#EDE9E0;border-radius:20px;padding:32px;border-top:8px solid #1F2A44">
+<svg viewBox="0 0 24 24" style="color:#1F2A44;width:52px;height:52px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Database"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+<h3 style="font-size:30px;font-weight:700;color:#1F2A44">1 · Collect</h3>
+<p style="font-size:24px;line-height:1.4;color:#4A5263">Audited figures and Auditor-General opinions from Treasury’s Municipal Money API, 2018–2024</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#EDE9E0;border-radius:20px;padding:32px;border-top:8px solid #1F2A44">
+<svg viewBox="0 0 24 24" style="color:#1F2A44;width:52px;height:52px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Tool"><path d="M3 21l8-8"/><path d="M13 3l8 8-4 4-8-8z"/></svg>
+<h3 style="font-size:30px;font-weight:700;color:#1F2A44">2 · Engineer</h3>
+<p style="font-size:24px;line-height:1.4;color:#4A5263">Nine financial-health ratios plus last year’s audit outcome for each municipality and year</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#EDE9E0;border-radius:20px;padding:32px;border-top:8px solid #1F2A44">
+<svg viewBox="0 0 24 24" style="color:#1F2A44;width:52px;height:52px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Activity"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+<h3 style="font-size:30px;font-weight:700;color:#1F2A44">3 · Learn</h3>
+<p style="font-size:24px;line-height:1.4;color:#4A5263">Six models compared on past years; the simplest reliable one, Logistic Regression, is locked in</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#EDE9E0;border-radius:20px;padding:32px;border-top:8px solid #C2410C">
+<svg viewBox="0 0 24 24" style="color:#C2410C;width:52px;height:52px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Chart"><path d="M5 20V11M11 20V5M17 20v-7M3 20h18"/></svg>
+<h3 style="font-size:30px;font-weight:700;color:#1F2A44">4 · Forecast</h3>
+<p style="font-size:24px;line-height:1.4;color:#4A5263">The locked model scores every municipality’s next audit, with the reasons behind each score</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#EDE9E0;border-radius:20px;padding:32px;border-top:8px solid #0F766E">
+<svg viewBox="0 0 24 24" style="color:#0F766E;width:52px;height:52px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Users"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.8 0 5 2.2 5 5"/></svg>
+<h3 style="font-size:30px;font-weight:700;color:#1F2A44">5 · Act</h3>
+<p style="font-size:24px;line-height:1.4;color:#4A5263">A dashboard where officials drill from the national picture to one municipality</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#4A5263;width:1500px">The whole pipeline reruns with one command, <b style="color:#1F2A44">python run_all.py</b>, and gives identical results every time.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Seeing municipal audit failure coming · 6</p>
+
+</section>
+
+<section id="choices" data-transition="fade" style="background:#EDE9E0;color:#1F2A44;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#C2410C;letter-spacing:2px;text-transform:uppercase">Why we built it this way</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:60px;font-weight:400;line-height:1.15;color:#1F2A44">Five design choices, and the reason for each</h2>
+</div>
+<table style="font-size:28px;color:#1F2A44;background:#F6F4EF;border-radius:16px">
+<tr style="background:#1F2A44"><th style="width:38%;color:#F6F4EF;text-align:left">Choice</th><th style="width:62%;color:#F6F4EF;text-align:left">Why</th></tr>
+<tr><td><b>Predict next year’s audit</b></td><td>Treasury needs time to act before the outcome is decided</td></tr>
+<tr><td><b>Split the data by year</b></td><td>Learn from the past, test on the future: exactly how it will be used</td></tr>
+<tr><td><b>Logistic Regression</b></td><td>As accurate as the neural networks, more stable, and every score can be explained</td></tr>
+<tr><td><b>Macro-F1 as the main score</b></td><td>A missed failing municipality and a false alarm both have real costs</td></tr>
+<tr><td><b>A dashboard, not a spreadsheet</b></td><td>Officials move from a national view to one municipality in two clicks</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Seeing municipal audit failure coming · 7</p>
+
+</section>
+
+<section id="works" data-transition="fade" style="background:#F6F4EF;color:#1F2A44;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#C2410C;letter-spacing:2px;text-transform:uppercase">Does it work?</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:60px;font-weight:400;line-height:1.15;color:#1F2A44">Tested once, on a year it had never seen</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#EDE9E0;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:72px;font-weight:700;color:#1F2A44;line-height:1">90.8%</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5263">of 240 municipalities classified correctly</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#EDE9E0;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:72px;font-weight:700;color:#C2410C;line-height:1">90/103</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5263">municipalities that failed were flagged in advance</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#EDE9E0;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:72px;font-weight:700;color:#1F2A44;line-height:1">9/137</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5263">healthy municipalities wrongly flagged</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#EDE9E0;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:72px;font-weight:700;color:#0F766E;line-height:1">0.906</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5263">macro-F1, 95% interval 0.87 to 0.94</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;border-left:6px solid #1F2A44;padding:4px 0px 4px 28px">
+<h3 style="font-size:30px;font-weight:700;color:#1F2A44">A fair test</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5263">Trained on 2018–2022, then scored once on 2023 figures against the published 2024 audits.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;border-left:6px solid #1F2A44;padding:4px 0px 4px 28px">
+<h3 style="font-size:30px;font-weight:700;color:#1F2A44">Checked statistically</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5263">Compared with four other models, ablation tests and McNemar’s test; results reproduce exactly.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Seeing municipal audit failure coming · 8</p>
+
+</section>
+
+<section id="product" data-transition="fade" style="background:#EDE9E0;color:#1F2A44;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#C2410C;letter-spacing:2px;text-transform:uppercase">The product</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:60px;font-weight:400;line-height:1.15;color:#1F2A44">A dashboard built for the people who decide</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px">
+<img src="../reports/figures/app/app_overview_full.png" alt="Dashboard overview with model accuracy rings, the 2025 forecast gauges, the at-risk trend and the ten highest-risk municipalities" style="width:536px;height:470px;object-fit:cover;border-radius:16px;border:2px solid #D6D0C2">
+<p style="font-size:24px;line-height:1.35;color:#4A5263"><b style="color:#1F2A44">Overview:</b> the national picture; every number opens its detail</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px">
+<img src="../reports/figures/app/app_explorer.png" alt="Explorer with filters for year, province, type and audit opinion, category charts and the municipality table" style="width:536px;height:470px;object-fit:cover;border-radius:16px;border:2px solid #D6D0C2">
+<p style="font-size:24px;line-height:1.35;color:#4A5263"><b style="color:#1F2A44">Explorer:</b> filter by province, type, opinion or risk</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px">
+<img src="../reports/figures/app/app_profile_top.png" alt="Profile of Emfuleni showing an 85.4% forecast risk for the 2025 audit with reasons, ranks and risk history" style="width:536px;height:470px;object-fit:cover;border-radius:16px;border:2px solid #D6D0C2">
+<p style="font-size:24px;line-height:1.35;color:#4A5263"><b style="color:#1F2A44">Profile:</b> one municipality’s forecast, reasons and history</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Seeing municipal audit failure coming · 9</p>
+
+</section>
+
+<section id="workflow" data-transition="fade" style="background:#F6F4EF;color:#1F2A44;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#C2410C;letter-spacing:2px;text-transform:uppercase">In practice</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:60px;font-weight:400;line-height:1.15;color:#1F2A44">How a Treasury official would use it</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:0px">
+<div style="display:flex;flex-direction:row;gap:32px;align-items:center;padding:22px 0px;border-bottom:2px solid #DDD7CA">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:44px;font-weight:700;color:#C2410C;width:64px">1</p>
+<p style="font-size:30px;font-weight:700;color:#1F2A44;width:520px">See who is at risk</p>
+<p style="font-size:28px;line-height:1.35;color:#4A5263;flex:1">The overview lists the 106 municipalities flagged for the 2025 audit</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px;align-items:center;padding:22px 0px;border-bottom:2px solid #DDD7CA">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:44px;font-weight:700;color:#C2410C;width:64px">2</p>
+<p style="font-size:30px;font-weight:700;color:#1F2A44;width:520px">Narrow to a province</p>
+<p style="font-size:28px;line-height:1.35;color:#4A5263;flex:1">The explorer filters the list for each provincial treasury</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px;align-items:center;padding:22px 0px;border-bottom:2px solid #DDD7CA">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:44px;font-weight:700;color:#C2410C;width:64px">3</p>
+<p style="font-size:30px;font-weight:700;color:#1F2A44;width:520px">Understand one municipality</p>
+<p style="font-size:28px;line-height:1.35;color:#4A5263;flex:1">The profile shows why it is flagged, its history and where it misses Treasury’s norms</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px;align-items:center;padding:22px 0px;border-bottom:2px solid #DDD7CA">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:44px;font-weight:700;color:#C2410C;width:64px">4</p>
+<p style="font-size:30px;font-weight:700;color:#1F2A44;width:520px">Decide the support</p>
+<p style="font-size:28px;line-height:1.35;color:#4A5263;flex:1">The official, not the model, chooses secondments, oversight or other help</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px;align-items:center;padding:22px 0px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:44px;font-weight:700;color:#0F766E;width:64px">5</p>
+<p style="font-size:30px;font-weight:700;color:#1F2A44;width:520px">Check and retrain yearly</p>
+<p style="font-size:28px;line-height:1.35;color:#4A5263;flex:1">When the Auditor-General publishes, compare the forecast and retrain</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Seeing municipal audit failure coming · 10</p>
+
+</section>
+
+<section id="limits" data-transition="fade" style="background:#1F2A44;color:#F6F4EF;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:52px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#F2A27F;letter-spacing:2px;text-transform:uppercase">Being honest about the limits</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:60px;font-weight:400;line-height:1.2;color:#F6F4EF;width:1550px">It knows which municipalities are struggling, not which are about to change</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#2B3A5C;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:72px;font-weight:700;color:#F2A27F;line-height:1">0 of 22</p>
+<p style="font-size:26px;line-height:1.4;color:#C8CFDC">municipalities whose audit status changed were predicted correctly. Audit outcomes mostly repeat, and the model learned exactly that.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#2B3A5C;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:72px;font-weight:700;color:#F6F4EF;line-height:1">28.6%</p>
+<p style="font-size:26px;line-height:1.4;color:#C8CFDC">false alarms in the Northern Cape, against 5–10% in other provinces: lists need a province-by-province review.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#2B3A5C;border-radius:20px;padding:36px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:72px;font-weight:700;color:#7CC9C1;line-height:1">1,271%</p>
+<p style="font-size:26px;line-height:1.4;color:#C8CFDC">irregular expenditure reported by one municipality: self-reported figures contain errors, and the worst performers submit the least data.</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.4;color:#F6F4EF;width:1550px">So we recommend it as a <b>triage list</b> for municipalities already in difficulty, never as an automatic funding or penalty tool.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#A3ACBD">Seeing municipal audit failure coming · 11</p>
+
+</section>
+
+<section id="next" data-transition="fade" style="background:#F6F4EF;color:#1F2A44;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#C2410C;letter-spacing:2px;text-transform:uppercase">What comes next</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:60px;font-weight:400;line-height:1.15;color:#1F2A44">Turning a triage list into an early warning</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#EDE9E0;border-radius:20px;padding:36px">
+<svg viewBox="0 0 24 24" style="color:#C2410C;width:48px;height:48px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Clock"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+<h3 style="font-size:30px;font-weight:700;color:#1F2A44">In-year data</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5263">Quarterly section 71 reports show trouble months before year-end.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#EDE9E0;border-radius:20px;padding:36px">
+<svg viewBox="0 0 24 24" style="color:#C2410C;width:48px;height:48px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Search"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></svg>
+<h3 style="font-size:30px;font-weight:700;color:#1F2A44">Richer signals</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5263">Audit findings, senior vacancies and debt-collection trends.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#EDE9E0;border-radius:20px;padding:36px">
+<svg viewBox="0 0 24 24" style="color:#C2410C;width:48px;height:48px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Activity"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+<h3 style="font-size:30px;font-weight:700;color:#1F2A44">Model the change</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5263">Predict whether a status will change, not just what it will be.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:48px;align-items:center;background:#1F2A44;border-radius:24px;padding:44px 52px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px">
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:56px;font-weight:400;color:#F6F4EF;line-height:1.15">Thank you. Questions?</p>
+<p style="font-size:26px;line-height:1.4;color:#C8CFDC">Live dashboard: [link] · Code: github.com/TshinavheT/IDAproject (final_project)</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Seeing municipal audit failure coming · 12</p>
+
+</section>
+
+</body></html>

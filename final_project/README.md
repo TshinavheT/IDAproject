@@ -29,6 +29,7 @@ results/             metric tables, predictions (incl. paired McNemar prediction
 reports/             report sections (.docx), figures, data audit; build/capture scripts for the report
 docs/                dataset card, data dictionary, experiment log
 app/                 Streamlit dashboard, sample CSVs (app/samples) and smoke test (app/test_app.py)
+presentation/        both slide decks as PDF (plus sources and build script)
 notebooks/archive/   first Question 3 run (random split), superseded and kept for the record
 run_all.py           reproduces every result in order
 ```

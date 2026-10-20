@@ -1,0 +1,24 @@
+<section id="overfit" data-transition="fade" style="background:#E9EDF3;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">07 · Overfitting and optimisation</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">Tuning made the champion simpler, not more accurate</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#F4F6FA;border-radius:24px;padding:44px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#2E3546">Overfitting check</h3>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:flex-end">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:72px;font-weight:600;color:#C42D58;line-height:1">1.00 → 0.88</p>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Random Forest memorises the training years (train vs validation macro-F1).</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Logistic Regression and both networks show no gap. Early stopping halted the networks at epochs 13 and 8, with dropout and weight decay as further controls.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#F4F6FA;border-radius:24px;padding:44px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#2E3546">Optuna, 60 trials</h3>
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:72px;font-weight:600;color:#0D7C72;line-height:1">0.870 → 0.874</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">CV macro-F1 before and after tuning: smaller than the fold-to-fold spread (± 0.025), so not a meaningful gain.</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Chosen: L1 penalty, C = 0.074. It switched off 5 of the 9 ratios, keeping cash coverage, repairs and maintenance, operating surplus and revenue.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 8</p>
+<aside>Presenter: [evaluation lead]. Random Forest scores perfectly on the years it trained on but only 0.88 on 2022: it memorises. The champion and the networks have no gap. We tuned only the champion, with Optuna, scoring on walk-forward cross-validation inside the training years so neither 2022 nor 2023 was touched. The gain was 0.004, smaller than the spread between folds, so we say plainly it is not meaningful. The useful effect is a simpler, explainable model: four ratios with sensible signs.</aside>
+</section>

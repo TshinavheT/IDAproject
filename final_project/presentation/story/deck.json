@@ -1,0 +1,19 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-20T09:00:00Z"},
+  "lists": "css",
+  "title": "Audit Risk: Why, What and How",
+  "order": ["cover", "problem", "why", "pains", "solution", "how", "choices", "works", "product", "workflow", "limits", "next"],
+  "sections": {
+    "s1": {"description": "Why municipal audit failure matters and why we chose this problem", "start": "cover"},
+    "s2": {"description": "The problems the product solves and what we built", "start": "pains"},
+    "s3": {"description": "How it works and why we built it this way", "start": "how"},
+    "s4": {"description": "Evidence that it works and the product itself", "start": "works"},
+    "s5": {"description": "How Treasury uses it, its limits and what comes next", "start": "workflow"}
+  },
+  "faces": {
+    "libre-baskerville": {"family": "Libre Baskerville", "href": "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap"},
+    "public-sans": {"family": "Public Sans", "href": "https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&display=swap"}
+  },
+  "designSystems": []
+}

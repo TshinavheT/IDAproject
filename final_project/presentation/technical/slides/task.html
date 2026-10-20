@@ -1,0 +1,40 @@
+<section id="task" data-transition="fade" style="background:#E9EDF3;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">02 · The task</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">One municipality, one year: predict next year's audit</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#F4F6FA;border-radius:24px;padding:36px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<p style="font-size:24px;font-weight:700;color:#0D7C72;text-transform:uppercase;letter-spacing:2px">Inputs · year t</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">9 audited financial indicators: revenue, expenditure, surplus, cash coverage, collection rate, debtor days, repairs, irregular spending, grants</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">+ last year's audit outcome</p>
+</div>
+<x-shape kind="arrow-right" style="width:88px;height:44px;background:#F5A524"></x-shape>
+<div style="width:300px;display:flex;flex-direction:column;align-items:center;gap:10px;background:#2E3546;border-radius:24px;padding:40px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#F1F4F8;text-align:center">Model</p>
+<p style="font-size:24px;color:#C9D2E0;text-align:center">one audit cycle ahead</p>
+</div>
+<x-shape kind="arrow-right" style="width:88px;height:44px;background:#F5A524"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#F4F6FA;border-radius:24px;padding:36px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<p style="font-size:24px;font-weight:700;color:#0D7C72;text-transform:uppercase;letter-spacing:2px">Target · year t+1</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568"><b style="color:#C42D58">At risk:</b> qualified, adverse, disclaimer or outstanding</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568"><b style="color:#0D7C72">Not at risk:</b> unqualified, with or without findings</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #C42D58;padding:20px 0px 0px 0px">
+<p style="font-size:26px;font-weight:700;color:#2E3546">Primary metric: macro-F1</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5568">Both classes matter equally; accuracy alone hides missed cases.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #F5A524;padding:20px 0px 0px 0px">
+<p style="font-size:26px;font-weight:700;color:#2E3546">A missed municipality</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5568">Support arrives a year late, after services have already failed.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #0D7C72;padding:20px 0px 0px 0px">
+<p style="font-size:26px;font-weight:700;color:#2E3546">A false alarm</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5568">Scarce support and staff go where they were not needed.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 3</p>
+<aside>Presenter: [project lead]. The unit of prediction is a municipality in one financial year. We use that year's audited figures and its audit outcome to predict the outcome of the following year's audit, one full audit cycle ahead. The service-delivery success indicator is the share of failing municipalities Treasury reaches before their next audit. Macro-F1 is our primary metric because a missed municipality and a wasted intervention both have real costs.</aside>
+</section>

@@ -1,0 +1,25 @@
+<section id="ablation" data-transition="fade" style="background:#E9EDF3;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">09 · Ablation and McNemar's test</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">It depends on last year's audit and on scaling</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;flex:1">
+<div style="flex:1.25;display:flex;flex-direction:column;gap:16px;background:#F4F6FA;border-radius:24px;padding:28px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<img src="/_blob/2cae5b778fcd054e0a3f603acb2270fa" alt="Ablation chart: removing audit history drops macro-F1 by 0.195; removing scaling drops it by 0.260; removing the financial ratios, class weighting or swapping L1 for L2 leaves macro-F1 unchanged" style="width:836px;height:430px;object-fit:contain;border-radius:12px">
+<p style="font-size:24px;line-height:1.4;color:#4A5568">Five one-change experiments, same split and seed. Removing all nine ratios leaves macro-F1 unchanged but lowers ROC-AUC by 0.032.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#F4F6FA;border-radius:24px;padding:36px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#2E3546">Champion vs MLP (240 cases)</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div style="display:flex;flex-direction:column;gap:4px;background:#E6EBF2;border-radius:16px;padding:16px"><p style="font-family:'Poppins', Arial, sans-serif;font-size:44px;font-weight:600;color:#2E3546;line-height:1.1">217</p><p style="font-size:24px;color:#4A5568">both correct</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FBEFF2;border-radius:16px;padding:16px"><p style="font-family:'Poppins', Arial, sans-serif;font-size:44px;font-weight:600;color:#C42D58;line-height:1.1">1</p><p style="font-size:24px;color:#4A5568">champion only</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FBEFF2;border-radius:16px;padding:16px"><p style="font-family:'Poppins', Arial, sans-serif;font-size:44px;font-weight:600;color:#C42D58;line-height:1.1">0</p><p style="font-size:24px;color:#4A5568">MLP only</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#E6EBF2;border-radius:16px;padding:16px"><p style="font-family:'Poppins', Arial, sans-serif;font-size:44px;font-weight:600;color:#2E3546;line-height:1.1">22</p><p style="font-size:24px;color:#4A5568">both wrong</p></div>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">H₀: equal error rates, α = 0.05. One discordant pair, so exact binomial: <b style="color:#2E3546">p = 1.000, not rejected.</b></p>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">No real difference: we keep Logistic Regression for simplicity and stability.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 10</p>
+<aside>Presenter: [evaluation lead]. Each ablation changes one thing with the split and seed fixed. Removing last year's outcome costs 0.195 macro-F1; removing scaling costs 0.26 because revenue is in billions of rand. The ratios only sharpen the ranking. McNemar's test compares the champion and the MLP on the same 240 municipalities: they disagree on one, so we use the exact binomial version, p equals 1, and we do not reject the null hypothesis. Statistically and practically there is no difference; we keep Logistic Regression because it is simpler, explainable and stable.</aside>
+</section>

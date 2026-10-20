@@ -1,0 +1,439 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Predicting Municipal Audit Outcomes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap">
+<style>
+@page { size: 1920px 1080px; margin: 0 }
+* { margin: 0; box-sizing: border-box }
+html, body { background: #777 }
+section { width: 1920px; height: 1080px; position: relative; overflow: hidden; break-after: page }
+section:last-of-type { break-after: auto }
+aside { display: none }
+h1 { font-size: 96px } h2 { font-size: 64px } h3 { font-size: 44px; font-weight: 600 } p { font-size: 32px; line-height: 1.4 }
+ul, ol { padding-left: 1.2em }
+table { border-collapse: collapse; width: 100% }
+th, td { padding: 0.35em 0.6em; border-bottom: 1px solid rgba(0,0,0,0.12); vertical-align: top }
+img { display: block }
+svg { display: block; flex: none }
+</style></head><body>
+<section id="cover" data-transition="fade" style="background:#2E3546;color:#F1F4F8;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<div style="position:absolute;left:1240px;top:0px;width:680px;height:1080px;background:radial-gradient(circle at 70% 40%, #3D4760, #2E3546)"></div>
+<div style="display:flex;flex-direction:row;gap:14px">
+<div style="width:28px;height:28px;background:#FF7A9C;border-radius:8px"></div>
+<div style="width:28px;height:28px;background:#F5A524;border-radius:8px"></div>
+<div style="width:28px;height:28px;background:#2CC4B4;border-radius:8px"></div>
+</div>
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#FF9DB6;letter-spacing:3px;text-transform:uppercase">IDA117V · Introduction to Data Science · Group project</p>
+<h1 style="font-family:'Poppins', Arial, sans-serif;font-size:96px;font-weight:400;line-height:1.1;color:#F1F4F8;width:1300px">Predicting <b>municipal audit outcomes</b> a year ahead</h1>
+<p style="font-size:44px;color:#C9D2E0;width:1250px;line-height:1.3">Helping National Treasury reach struggling municipalities before their next Auditor-General audit</p>
+<p style="font-size:28px;color:#C9D2E0">[Group number] · [Member names] · [Lecturer] · October 2026</p>
+
+</section>
+
+<section id="problem" data-transition="fade" style="background:#E9EDF3;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">01 · The problem</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">Audit results arrive too late to prevent the damage</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#F4F6FA;border-radius:24px;padding:44px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<div style="width:56px;height:8px;background:#C42D58;border-radius:4px"></div>
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#2E3546">The problem</h3>
+<p style="font-size:30px;line-height:1.4;color:#4A5568">The Auditor-General audits all 257 municipalities every year. Poor financial management shows up as unpaid bills, neglected infrastructure and failing water, electricity and refuse services, but the audit result only arrives after the year has closed.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#F4F6FA;border-radius:24px;padding:44px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<div style="width:56px;height:8px;background:#F5A524;border-radius:4px"></div>
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#2E3546">Who decides</h3>
+<p style="font-size:30px;line-height:1.4;color:#4A5568">National Treasury's local government support function and the provincial treasuries choose where to send finance secondments, oversight and support each year, with a limited budget and staff.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#F4F6FA;border-radius:24px;padding:44px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<div style="width:56px;height:8px;background:#0D7C72;border-radius:4px"></div>
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#2E3546">Public value</h3>
+<p style="font-size:30px;line-height:1.4;color:#4A5568">Earlier, consistent, evidence-based targeting of support, reaching struggling municipalities before service delivery collapses. The model supports human judgement; it does not replace the audit.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 2</p>
+
+</section>
+
+<section id="task" data-transition="fade" style="background:#E9EDF3;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">02 · The task</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">One municipality, one year: predict next year's audit</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#F4F6FA;border-radius:24px;padding:36px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<p style="font-size:24px;font-weight:700;color:#0D7C72;text-transform:uppercase;letter-spacing:2px">Inputs · year t</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">9 audited financial indicators: revenue, expenditure, surplus, cash coverage, collection rate, debtor days, repairs, irregular spending, grants</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">+ last year's audit outcome</p>
+</div>
+<svg viewBox="0 0 100 50" preserveAspectRatio="none" style="width:88px;height:44px;" aria-label="arrow"><path d="M0 16h58V0l42 25-42 25V34H0z" fill="#F5A524"/></svg>
+<div style="width:300px;display:flex;flex-direction:column;align-items:center;gap:10px;background:#2E3546;border-radius:24px;padding:40px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#F1F4F8;text-align:center">Model</p>
+<p style="font-size:24px;color:#C9D2E0;text-align:center">one audit cycle ahead</p>
+</div>
+<svg viewBox="0 0 100 50" preserveAspectRatio="none" style="width:88px;height:44px;" aria-label="arrow"><path d="M0 16h58V0l42 25-42 25V34H0z" fill="#F5A524"/></svg>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#F4F6FA;border-radius:24px;padding:36px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<p style="font-size:24px;font-weight:700;color:#0D7C72;text-transform:uppercase;letter-spacing:2px">Target · year t+1</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568"><b style="color:#C42D58">At risk:</b> qualified, adverse, disclaimer or outstanding</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568"><b style="color:#0D7C72">Not at risk:</b> unqualified, with or without findings</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #C42D58;padding:20px 0px 0px 0px">
+<p style="font-size:26px;font-weight:700;color:#2E3546">Primary metric: macro-F1</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5568">Both classes matter equally; accuracy alone hides missed cases.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #F5A524;padding:20px 0px 0px 0px">
+<p style="font-size:26px;font-weight:700;color:#2E3546">A missed municipality</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5568">Support arrives a year late, after services have already failed.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #0D7C72;padding:20px 0px 0px 0px">
+<p style="font-size:26px;font-weight:700;color:#2E3546">A false alarm</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5568">Scarce support and staff go where they were not needed.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 3</p>
+
+</section>
+
+<section id="data" data-transition="fade" style="background:#F1F4F8;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">03 · The data</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">National Treasury's own data, free to reuse</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:4px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:88px;font-weight:600;color:#2E3546;line-height:1.1">257</p>
+<p style="font-size:26px;color:#4A5568">municipalities</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:88px;font-weight:600;color:#2E3546;line-height:1.1">1,434</p>
+<p style="font-size:26px;color:#4A5568">municipality-years</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:88px;font-weight:600;color:#2E3546;line-height:1.1">2018–23</p>
+<p style="font-size:26px;color:#4A5568">feature years</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:88px;font-weight:600;color:#C42D58;line-height:1.1">45.5%</p>
+<p style="font-size:26px;color:#4A5568">at risk next year</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#E6EBF2;border-radius:24px;padding:40px">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#2E3546">Source and licence</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Municipal Money (municipaldata.treasury.gov.za): income and expenditure, financial position, debtors, repairs, irregular expenditure, grants and Auditor-General opinions. Free commercial and non-commercial reuse.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#E6EBF2;border-radius:24px;padding:40px">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#2E3546">Privacy and quality</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">No personal data (POPIA): officials' names and contacts excluded. Self-reported figures include implausible values; early missing years are stored as zero; the grants extract is incomplete.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 4</p>
+
+</section>
+
+<section id="split" data-transition="fade" style="background:#F1F4F8;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">04 · Leakage-safe split</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">Split by time, so the model only learns from the past</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:12px">
+<div style="flex:3.6;display:flex;flex-direction:column;gap:6px;background:#3B6FEB;border-radius:20px;padding:28px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:30px;font-weight:600;color:#F7F9FD">Train · 2018–2021</p>
+<p style="font-size:24px;color:#E3EAFB">950 rows · fit and tune</p>
+</div>
+<div style="flex:1.5;display:flex;flex-direction:column;gap:6px;background:#F5A524;border-radius:20px;padding:28px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:30px;font-weight:600;color:#2E3546">Validate 2022</p>
+<p style="font-size:24px;color:#2E3546">244 · pick champion</p>
+</div>
+<div style="flex:1.5;display:flex;flex-direction:column;gap:6px;background:#C42D58;border-radius:20px;padding:28px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:30px;font-weight:600;color:#FBF4F6">Test 2023</p>
+<p style="font-size:24px;color:#FBE3EA">240 · used once</p>
+</div>
+<div style="flex:1.5;display:flex;flex-direction:column;gap:6px;background:#E6EBF2;border:3px dashed #0D7C72;border-radius:20px;padding:25px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:30px;font-weight:600;color:#0D7C72">Forecast 2024</p>
+<p style="font-size:24px;color:#2E3546">245 · 2025 audit</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#2E3546">Rules we kept</h3>
+<ul style="font-size:28px;line-height:1.5;color:#4A5568">
+<li>Imputation, scaling and encoding learned on training years only</li>
+<li>Year, identifiers and raw opinion columns excluded</li>
+<li>Tuning scored by walk-forward CV inside 2018–2021</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FBEFF2;border-radius:24px;padding:36px">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#C42D58">A correction we made</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Our first run used a random split and the year as a feature, letting the future inform the past. We re-ran every model on the time split; the champion changed from Random Forest to Logistic Regression.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 5</p>
+
+</section>
+
+<section id="models" data-transition="fade" style="background:#E9EDF3;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">05 · Models</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">Two baselines and four models on the same 2022 municipalities</h2>
+</div>
+<table style="font-size:28px;color:#2E3546;background:#F4F6FA;border-radius:16px">
+<tr style="background:#2E3546"><th style="width:34%;color:#F1F4F8;text-align:left">Model</th><th style="width:16%;color:#F1F4F8;text-align:left">Family</th><th style="width:15%;color:#F1F4F8;text-align:right">Macro-F1</th><th style="width:15%;color:#F1F4F8;text-align:right">ROC-AUC</th><th style="width:20%;color:#F1F4F8;text-align:right">CV macro-F1</th></tr>
+<tr><td>Dummy (majority class)</td><td>Baseline</td><td style="text-align:right">0.366</td><td style="text-align:right">0.500</td><td style="text-align:right">0.33 ± 0.03</td></tr>
+<tr><td>Repeat last year's outcome</td><td>Baseline</td><td style="text-align:right">0.887</td><td style="text-align:right">0.887</td><td style="text-align:right">0.87 ± 0.02</td></tr>
+<tr style="background:#FBEFF2"><td><b>Logistic Regression</b></td><td>Traditional</td><td style="text-align:right"><b>0.887</b></td><td style="text-align:right">0.928</td><td style="text-align:right"><b>0.87 ± 0.02</b></td></tr>
+<tr><td>Random Forest (200 trees)</td><td>Traditional</td><td style="text-align:right">0.878</td><td style="text-align:right">0.913</td><td style="text-align:right">0.87 ± 0.02</td></tr>
+<tr><td>MLP (64–32, dropout 0.2)</td><td>Neural</td><td style="text-align:right">0.879</td><td style="text-align:right">0.929</td><td style="text-align:right">0.75 ± 0.18</td></tr>
+<tr><td>Residual tabular network</td><td>Neural</td><td style="text-align:right">0.879</td><td style="text-align:right">0.927</td><td style="text-align:right">0.74 ± 0.20</td></tr>
+</table>
+<p style="font-size:28px;line-height:1.4;color:#4A5568;width:1500px"><b style="color:#C42D58">Champion: Logistic Regression</b>, chosen on validation only: best macro-F1 and PR-AUC (0.922) among the four models, and the most stable across walk-forward folds.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 6</p>
+
+</section>
+
+<section id="persist" data-transition="fade" style="background:#2E3546;color:#F1F4F8;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:48px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#FF9DB6;letter-spacing:2px;text-transform:uppercase">06 · What the models learned</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.15;color:#F1F4F8;width:1500px">Audit outcomes repeat, and the models learned exactly that</h2>
+<div style="display:flex;flex-direction:row;gap:64px;align-items:flex-end">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:160px;font-weight:600;color:#FF9DB6;line-height:1">100%</p>
+<p style="font-size:30px;color:#C9D2E0;width:520px">of Logistic Regression's validation predictions match “repeat last year's outcome”</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:96px;font-weight:600;color:#F5C26B;line-height:1">97–98%</p>
+<p style="font-size:30px;color:#C9D2E0;width:420px">for Random Forest and both neural networks</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:96px;font-weight:600;color:#6FE0D2;line-height:1">0.887</p>
+<p style="font-size:30px;color:#C9D2E0;width:420px">macro-F1 of the rule alone, equal to the best model</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#A9B3C4">IDA117V · Predicting municipal audit outcomes · 7</p>
+
+</section>
+
+<section id="overfit" data-transition="fade" style="background:#E9EDF3;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">07 · Overfitting and optimisation</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">Tuning made the champion simpler, not more accurate</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#F4F6FA;border-radius:24px;padding:44px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#2E3546">Overfitting check</h3>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:flex-end">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:72px;font-weight:600;color:#C42D58;line-height:1">1.00 → 0.88</p>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Random Forest memorises the training years (train vs validation macro-F1).</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Logistic Regression and both networks show no gap. Early stopping halted the networks at epochs 13 and 8, with dropout and weight decay as further controls.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#F4F6FA;border-radius:24px;padding:44px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#2E3546">Optuna, 60 trials</h3>
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:72px;font-weight:600;color:#0D7C72;line-height:1">0.870 → 0.874</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">CV macro-F1 before and after tuning: smaller than the fold-to-fold spread (± 0.025), so not a meaningful gain.</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Chosen: L1 penalty, C = 0.074. It switched off 5 of the 9 ratios, keeping cash coverage, repairs and maintenance, operating surplus and revenue.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 8</p>
+
+</section>
+
+<section id="test" data-transition="fade" style="background:#F1F4F8;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">08 · One-time test</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">Scored once on unseen 2023 figures: 90.8% correct</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:28px">
+<div style="display:flex;flex-direction:column;gap:10px;background:#F7F9FC;border-radius:24px;padding:40px;box-shadow:10px 10px 24px #CFD6E0, -10px -10px 24px #FFFFFF">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:80px;font-weight:600;color:#C42D58;line-height:1">0.906</p>
+<p style="font-size:28px;font-weight:700;color:#2E3546">Macro-F1</p>
+<p style="font-size:24px;color:#4A5568">95% CI 0.866–0.941</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#F7F9FC;border-radius:24px;padding:40px;box-shadow:10px 10px 24px #CFD6E0, -10px -10px 24px #FFFFFF">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:80px;font-weight:600;color:#2E3546;line-height:1">90/103</p>
+<p style="font-size:28px;font-weight:700;color:#2E3546">Failing caught</p>
+<p style="font-size:24px;color:#4A5568">recall 0.874 · 13 missed</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#F7F9FC;border-radius:24px;padding:40px;box-shadow:10px 10px 24px #CFD6E0, -10px -10px 24px #FFFFFF">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:80px;font-weight:600;color:#2E3546;line-height:1">9/137</p>
+<p style="font-size:28px;font-weight:700;color:#2E3546">False alarms</p>
+<p style="font-size:24px;color:#4A5568">precision 0.909</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#F7F9FC;border-radius:24px;padding:40px;box-shadow:10px 10px 24px #CFD6E0, -10px -10px 24px #FFFFFF">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:80px;font-weight:600;color:#0D7C72;line-height:1">0.896</p>
+<p style="font-size:28px;font-weight:700;color:#2E3546">ROC-AUC</p>
+<p style="font-size:24px;color:#4A5568">rule alone: 0.904</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;background:#2E3546;border-radius:24px;padding:36px 44px">
+<svg viewBox="0 0 24 24" style="color:#F5C26B;width:56px;height:56px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Lightbulb"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>
+<p style="font-size:30px;line-height:1.4;color:#F1F4F8;width:1450px"><b>All 22 errors are municipalities whose status changed.</b> The 13 missed were clean in 2023 and failed in 2024; the 9 false alarms improved. The model generalises well but cannot see a change coming.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 9</p>
+
+</section>
+
+<section id="ablation" data-transition="fade" style="background:#E9EDF3;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">09 · Ablation and McNemar's test</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">It depends on last year's audit and on scaling</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;flex:1">
+<div style="flex:1.25;display:flex;flex-direction:column;gap:16px;background:#F4F6FA;border-radius:24px;padding:28px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<img src="../reports/figures/q6_ablation.png" alt="Ablation chart: removing audit history drops macro-F1 by 0.195; removing scaling drops it by 0.260; removing the financial ratios, class weighting or swapping L1 for L2 leaves macro-F1 unchanged" style="width:836px;height:430px;object-fit:contain;border-radius:12px">
+<p style="font-size:24px;line-height:1.4;color:#4A5568">Five one-change experiments, same split and seed. Removing all nine ratios leaves macro-F1 unchanged but lowers ROC-AUC by 0.032.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#F4F6FA;border-radius:24px;padding:36px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#2E3546">Champion vs MLP (240 cases)</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div style="display:flex;flex-direction:column;gap:4px;background:#E6EBF2;border-radius:16px;padding:16px"><p style="font-family:'Poppins', Arial, sans-serif;font-size:44px;font-weight:600;color:#2E3546;line-height:1.1">217</p><p style="font-size:24px;color:#4A5568">both correct</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FBEFF2;border-radius:16px;padding:16px"><p style="font-family:'Poppins', Arial, sans-serif;font-size:44px;font-weight:600;color:#C42D58;line-height:1.1">1</p><p style="font-size:24px;color:#4A5568">champion only</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FBEFF2;border-radius:16px;padding:16px"><p style="font-family:'Poppins', Arial, sans-serif;font-size:44px;font-weight:600;color:#C42D58;line-height:1.1">0</p><p style="font-size:24px;color:#4A5568">MLP only</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#E6EBF2;border-radius:16px;padding:16px"><p style="font-family:'Poppins', Arial, sans-serif;font-size:44px;font-weight:600;color:#2E3546;line-height:1.1">22</p><p style="font-size:24px;color:#4A5568">both wrong</p></div>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">H₀: equal error rates, α = 0.05. One discordant pair, so exact binomial: <b style="color:#2E3546">p = 1.000, not rejected.</b></p>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">No real difference: we keep Logistic Regression for simplicity and stability.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 10</p>
+
+</section>
+
+<section id="dashboard" data-transition="fade" style="background:#F1F4F8;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">10 · Deployment</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">A dashboard Treasury can drill into, municipality by municipality</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px">
+<img src="../reports/figures/app/app_profile_top.png" alt="Municipality profile for Emfuleni: 85.4% forecast risk for the 2025 audit, ranked 17 of 245 nationally, with reasons, risk history and audit opinions" style="width:816px;height:420px;object-fit:cover;border-radius:16px;border:2px solid #D3D9E3">
+<p style="font-size:24px;color:#4A5568">Profile: 2025 forecast with reasons, rank, risk history and audit opinions</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px">
+<img src="../reports/figures/app/app_dialog_recall.png" alt="Recall details dialog listing the 13 at-risk municipalities the model missed in the test year" style="width:816px;height:420px;object-fit:cover;border-radius:16px;border:2px solid #D3D9E3">
+<p style="font-size:24px;color:#4A5568">Every KPI opens its detail: here, the 13 municipalities recall missed</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Streamlit app running the saved pipeline: overview, explorer, a profile for each of 245 municipalities, risk check with input validation, model evidence and a responsible-use page.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 11</p>
+
+</section>
+
+<section id="demo" data-transition="fade" style="background:#2E3546;color:#F1F4F8;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#FF9DB6;letter-spacing:2px;text-transform:uppercase">11 · Live demonstration</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#F1F4F8">Three valid cases, one invalid file, one drill-down</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1.1;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;flex-direction:row;gap:20px;align-items:flex-start"><p style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#FF9DB6;width:48px">1</p><p style="font-size:30px;line-height:1.35;color:#E3E8F0;width:760px">Overview → Recall <b>Details</b>: the 13 missed municipalities</p></div>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:flex-start"><p style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#FF9DB6;width:48px">2</p><p style="font-size:30px;line-height:1.35;color:#E3E8F0;width:760px">Top-10 bar → <b>Ratlou</b> profile: 89% risk, #1 of 245, 7-year streak</p></div>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:flex-start"><p style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#FF9DB6;width:48px">3</p><p style="font-size:30px;line-height:1.35;color:#E3E8F0;width:760px">Explorer → click <b>North West</b>: 16 of 19 flagged</p></div>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:flex-start"><p style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#FF9DB6;width:48px">4</p><p style="font-size:30px;line-height:1.35;color:#E3E8F0;width:760px">Upload <b>valid_cases.csv</b>: Masilonyana 89.9%, Tsantsabane 77.2%, eThekwini 9.2%</p></div>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:flex-start"><p style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#FF9DB6;width:48px">5</p><p style="font-size:30px;line-height:1.35;color:#E3E8F0;width:760px">Upload <b>invalid_case.csv</b>: three clear errors, nothing scored</p></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<img src="../reports/figures/app/app_explorer.png" alt="Municipality Explorer with filters, category charts by province, type and last opinion, and the municipality table" style="width:740px;height:470px;object-fit:cover;border-radius:16px">
+<p style="font-family:'Courier New', monospace;font-size:26px;color:#6FE0D2;background:#3A4459;border-radius:12px;padding:14px 20px">streamlit run app/app.py</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#A9B3C4">IDA117V · Predicting municipal audit outcomes · 12</p>
+
+</section>
+
+<section id="fairness" data-transition="fade" style="background:#E9EDF3;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">12 · Uncertainty and fairness</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">Where the model is weakest</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px">
+<div style="width:1040px;display:flex;flex-direction:column;gap:16px;background:#F4F6FA;border-radius:24px;padding:28px;box-shadow:10px 10px 24px #C9D0DB, -10px -10px 24px #FFFFFF">
+<img src="../reports/figures/q8_fairness.png" alt="Test-year recall, false-positive rate and accuracy by province and municipality type; Northern Cape has a 28.6% false-positive rate and Limpopo a recall of 70%" style="width:984px;height:394px;object-fit:contain;border-radius:12px">
+<p style="font-size:24px;line-height:1.4;color:#4A5568">Province and type are not model inputs; groups marked * are too small to judge.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:6px;border-left:6px solid #C42D58;padding:4px 0px 4px 24px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:56px;font-weight:600;color:#C42D58;line-height:1.1">0 of 22</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5568">status changes predicted correctly; about 22 more are likely in 2025</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;border-left:6px solid #F5A524;padding:4px 0px 4px 24px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:56px;font-weight:600;color:#2E3546;line-height:1.1">28.6%</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5568">false alarms in the Northern Cape, vs 5–10% elsewhere</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;border-left:6px solid #0D7C72;padding:4px 0px 4px 24px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:56px;font-weight:600;color:#2E3546;line-height:1.1">70%</p>
+<p style="font-size:26px;line-height:1.35;color:#4A5568">recall in Limpopo: 3 of 10 failing municipalities missed</p>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 13</p>
+
+</section>
+
+<section id="recommend" data-transition="fade" style="background:#F1F4F8;color:#2E3546;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#C42D58;letter-spacing:2px;text-transform:uppercase">13 · Recommendation for National Treasury</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#2E3546">A triage list, not an early warning</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#F7F9FC;border-radius:24px;padding:40px;border-top:8px solid #0D7C72;box-shadow:10px 10px 24px #CFD6E0, -10px -10px 24px #FFFFFF">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#0D7C72">Do</h3>
+<ul style="font-size:26px;line-height:1.4;color:#4A5568">
+<li>Prioritise the 106 municipalities flagged for 2025 (102 at 80% or more)</li>
+<li>Review each province's list before allocating support</li>
+<li>Use the profiles to choose the kind of support</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#F7F9FC;border-radius:24px;padding:40px;border-top:8px solid #C42D58;box-shadow:10px 10px 24px #CFD6E0, -10px -10px 24px #FFFFFF">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#C42D58">Do not</h3>
+<ul style="font-size:26px;line-height:1.4;color:#4A5568">
+<li>Allocate funding or interventions automatically</li>
+<li>Judge or penalise municipalities or officials</li>
+<li>Rely on it to warn that a clean municipality will fail</li>
+<li>Use it after 2025 without retraining</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#F7F9FC;border-radius:24px;padding:40px;border-top:8px solid #F5A524;box-shadow:10px 10px 24px #CFD6E0, -10px -10px 24px #FFFFFF">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:36px;font-weight:600;color:#2E3546">Monitor yearly</h3>
+<ul style="font-size:26px;line-height:1.4;color:#4A5568">
+<li>Compare the forecast with the published 2025 outcomes</li>
+<li>Retrain if macro-F1 falls below 0.866 or recall below 0.80</li>
+<li>Check data quality on every new extract</li>
+</ul>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;background:#2E3546;border-radius:24px;padding:32px 44px">
+<svg viewBox="0 0 24 24" style="color:#F5C26B;width:52px;height:52px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Lightbulb"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>
+<p style="font-size:28px;line-height:1.4;color:#F1F4F8;width:1480px"><b>Next version:</b> add quarterly in-year section 71 data, audit findings and senior vacancies, and predict a <b>change</b> in status directly.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6475">IDA117V · Predicting municipal audit outcomes · 14</p>
+
+</section>
+
+<section id="close" data-transition="fade" style="background:#2E3546;color:#F1F4F8;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Poppins', Arial, sans-serif;font-size:24px;font-weight:700;color:#FF9DB6;letter-spacing:2px;text-transform:uppercase">14 · Reproducibility and team</p>
+<h2 style="font-family:'Poppins', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.15;color:#F1F4F8">Thank you. Questions?</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#3A4459;border-radius:24px;padding:44px">
+<h3 style="font-family:'Poppins', Arial, sans-serif;font-size:32px;font-weight:600;color:#F1F4F8">Reproducible end to end</h3>
+<p style="font-family:'Courier New', monospace;font-size:36px;color:#6FE0D2">python run_all.py</p>
+<p style="font-size:28px;line-height:1.4;color:#C9D2E0">11 steps in 4.1 minutes from a fresh clone, with every result identical. Seed 42, pinned requirements, no manual steps or secrets; dataset card, data dictionary and experiment log in docs/.</p>
+</div>
+<div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div style="display:flex;flex-direction:column;gap:4px;background:#3A4459;border-radius:16px;padding:22px"><p style="font-size:26px;font-weight:700;color:#F1F4F8">Thapelo [surname]</p><p style="font-size:24px;color:#C9D2E0">Data and preparation</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#3A4459;border-radius:16px;padding:22px"><p style="font-size:26px;font-weight:700;color:#F1F4F8">Pamela Khosa</p><p style="font-size:24px;color:#C9D2E0">Modelling</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#3A4459;border-radius:16px;padding:22px"><p style="font-size:26px;font-weight:700;color:#F1F4F8">Tendani Tshinavhe</p><p style="font-size:24px;color:#C9D2E0">Evaluation and deployment</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#3A4459;border-radius:16px;padding:22px"><p style="font-size:26px;font-weight:700;color:#F1F4F8">[Member]</p><p style="font-size:24px;color:#C9D2E0">[Role]</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#3A4459;border-radius:16px;padding:22px"><p style="font-size:26px;font-weight:700;color:#F1F4F8">[Member]</p><p style="font-size:24px;color:#C9D2E0">[Role]</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#3A4459;border-radius:16px;padding:22px"><p style="font-size:26px;font-weight:700;color:#F1F4F8">[Member]</p><p style="font-size:24px;color:#C9D2E0">[Role]</p></div>
+</div>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#A9B3C4">Data: National Treasury, Municipal Money (municipaldata.treasury.gov.za). AI-assisted code and drafting declared in the report and contribution statement.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#A9B3C4">IDA117V · Predicting municipal audit outcomes · 15</p>
+
+</section>
+
+</body></html>

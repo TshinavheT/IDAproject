@@ -1,0 +1,20 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-13T23:30:00Z"},
+  "lists": "css",
+  "title": "Predicting Municipal Audit Outcomes",
+  "order": ["cover", "problem", "task", "data", "split", "models", "persist", "overfit", "test", "ablation", "dashboard", "demo", "fairness", "recommend", "close"],
+  "sections": {
+    "s1": {"description": "The service-delivery problem, the stakeholder and the prediction task", "start": "cover"},
+    "s2": {"description": "Data, licence and the leakage-safe time-based split", "start": "data"},
+    "s3": {"description": "Baselines, four models, overfitting and champion optimisation", "start": "models"},
+    "s4": {"description": "One-time test result, ablations and McNemar's test", "start": "test"},
+    "s5": {"description": "The deployed dashboard and the live demonstration", "start": "dashboard"},
+    "s6": {"description": "Fairness, uncertainty, recommendation and reproducibility", "start": "fairness"}
+  },
+  "faces": {
+    "poppins": {"family": "Poppins", "href": "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"},
+    "nunito-sans": {"family": "Nunito Sans", "href": "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap"}
+  },
+  "designSystems": []
+}
