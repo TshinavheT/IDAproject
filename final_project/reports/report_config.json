@@ -1,0 +1,13 @@
+{
+  "_help": "Edit this file, then run: node reports/build_full_report.js   (and reports/export_report_pdf.ps1 to make the PDF). Leave liveUrl empty until the dashboard is hosted.",
+  "groupNumber": "[Group number]",
+  "lecturer": "[Lecturer name]",
+  "submissionDate": "[Submission date]",
+  "liveUrl": "",
+  "members": [
+    {"name": "Tendani Tshinavhe", "studentNumber": "[student number]", "role": "Evaluation, deployment and reproducibility lead"},
+    {"name": "Pamela Khosa", "studentNumber": "[student number]", "role": "Modelling lead (first Question 3 run)"},
+    {"name": "Thapelo [surname]", "studentNumber": "[student number]", "role": "Data governance and preparation lead (Question 2)"},
+    {"name": "[Full name] (GitHub: Tran203)", "studentNumber": "[student number]", "role": "Problem definition and ethics (Question 1)"}
+  ]
+}
