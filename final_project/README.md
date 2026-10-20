@@ -112,7 +112,7 @@ Demo files for Q7.4 are in `app/samples/`: `valid_cases.csv` (3 valid municipali
 | Name | Student number | Role |
 |------|----------------|------|
 | T Chaba | 216089898 | Data governance and preparation (Question 2) |
-| R Tabohane | 217033101 | [role] |
-| T Mabena | 221641221 | [role] |
-| T Tshinavhe | 219537948 | Evaluation, deployment and reproducibility (Questions 3–8, dashboard) |
+| R Tabohane | 217033101 | Optimisation, ablation and statistical testing (Questions 5–6) |
+| T Mabena | 221641221 | Problem definition and evaluation (Questions 1 and 4) |
+| T Tshinavhe | 219537948 | Deployment, uncertainty and recommendation (Questions 7–8, dashboard) |
 | P Khosa | 221335970 | Modelling (first Question 3 run) |

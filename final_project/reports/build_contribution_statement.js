@@ -1,5 +1,5 @@
 // Builds reports/IDA117V_Contribution_Statement.docx (Q8.3): one page, signed by all members.
-// Contributions are pre-filled only where the repository's commit history shows them; the team completes the rest.
+// Roles as agreed by the team.
 // Run from the project root:  node reports/build_contribution_statement.js
 const fs = require("fs");
 const path = require("path");
@@ -23,18 +23,21 @@ const cell = (text, w, header = false) => new TableCell({
 });
 
 const members = [
-  ["T Chaba", "216089898", "Data governance and preparation lead",
+  ["T Chaba", "216089898", "Data governance and preparation (Question 2)",
     "Data acquisition from the Municipal Money API and modelling dataset (src/build_modeling_dataset.py); Question 2: data audit, " +
     "five EDA figures, time-based split and preprocessing pipeline (src/audit_q21_v2.py, visualize_q22_v2.py, split_q23_v2.py, " +
-    "pipeline_q24.py) and the Question 2 report section. Commits: “Question 2 done”, “dataset”, “question 2 word doc”."],
-  ["P Khosa", "221335970", "Modelling lead (first Question 3 run)",
-    "First baseline and four-model notebook and Question 3 write-up (notebooks/archive). Commit: “Add files via upload”."],
-  ["T Tshinavhe", "219537948", "Evaluation, deployment and reproducibility lead",
-    "Q3 re-run on the time-based split (src/train_q3.py, neural.py, models.py); Q4 evaluation; Q5 optimisation and test; " +
-    "Q6 ablations and McNemar's test; Q7 dashboard (app/) and 2025 forecast (src/forecast_next.py); Q8 fairness and " +
-    "uncertainty analysis, reproducibility package (run_all.py, docs/), merged report and presentations."],
-  ["R Tabohane", "217033101", "[role]", "[Specific outputs. Question 1 was committed by GitHub user Tran203: confirm whose account this is.]"],
-  ["T Mabena", "221641221", "[role]", "[Specific outputs]"],
+    "pipeline_q24.py) and the Question 2 report section."],
+  ["R Tabohane", "217033101", "Optimisation, ablation and statistical testing (Questions 5–6)",
+    "Question 5: Optuna optimisation of the champion and the one-time test on the 2023 year (src/optimise_q5.py); " +
+    "Question 6: ablation study and McNemar's test (src/ablation_mcnemar_q6.py) and the Questions 5–6 report sections."],
+  ["T Mabena", "221641221", "Problem definition and evaluation (Questions 1 and 4)",
+    "Question 1: problem, stakeholder, decision and success criteria; Question 4: evaluation metrics, ROC/PR curves, " +
+    "walk-forward cross-validation and overfitting analysis (src/evaluate_q4.py) and the Questions 1 and 4 report sections."],
+  ["T Tshinavhe", "219537948", "Deployment, uncertainty and recommendation (Questions 7–8)",
+    "Question 7: Streamlit dashboard (app/) and 2025 forecast (src/forecast_next.py); Question 8: bootstrap uncertainty, " +
+    "calibration, fairness, recommendation and reproducibility package (run_all.py, docs/); merged report and presentations."],
+  ["P Khosa", "221335970", "Modelling (first Question 3 run)",
+    "First baseline and four-model notebook and Question 3 write-up (Baseline&Models.ipynb, notebooks/archive)."],
 ];
 
 const doc = new Document({
@@ -49,8 +52,7 @@ const doc = new Document({
         text: "Predicting Municipal Audit Outcomes · Group: Auditors · Lecturer: Dr Dan Masethe · Submission date: 20/10/2026",
         size: 19, color: "444444" })] }),
       new Paragraph({ spacing: { after: 160 }, children: [new TextRun({ size: 18, text:
-        "Each member's role and specific outputs are listed below. Pre-filled entries come from the repository's commit history; " +
-        "members must confirm or correct them before signing." })] }),
+        "Each member's role and specific outputs, as agreed by the team, are listed below. Each member confirms their entry by signing." })] }),
       new Table({
         width: { size: W.reduce((a, b) => a + b, 0), type: WidthType.DXA }, columnWidths: W,
         rows: [
