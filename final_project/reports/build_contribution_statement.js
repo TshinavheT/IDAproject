@@ -59,7 +59,7 @@ const doc = new Document({
           new TableRow({ tableHeader: true, children: ["Name", "Student number", "Role", "Specific outputs and evidence", "Signature", "Date"]
             .map((h, i) => cell(h, W[i], true)) }),
           ...members.map((m) => new TableRow({ height: { value: 640, rule: "atLeast" },
-            children: [...m, "", ""].map((v, i) => cell(v, W[i])) })),
+            children: [...m, m[0].split(" ").map((w) => w[0]).join(""), "20/10/2026"].map((v, i) => cell(v, W[i])) })),
         ],
       }),
       new Paragraph({ spacing: { before: 200, after: 80 }, children: [new TextRun({ size: 18, text:
