@@ -37,7 +37,13 @@ streamlit run app/app.py
 ## Data source
 _To be completed: dataset URL, owner, licence._
 
-## Team
-| Name | Student number | Role |
-|------|----------------|------|
-|      |                |      |
+## Team: Auditors
+| Name | Student number |
+|------|----------------|
+| T Chaba | 216089898 |
+| R Tabohane | 217033101 |
+| T Mabena | 221641221 |
+| T Tshinavhe | 219537948 |
+| P Khosa | 221335970 |
+
+Final report: [`final_project/reports/IDA117V_Technical_Report.pdf`](final_project/reports/IDA117V_Technical_Report.pdf)

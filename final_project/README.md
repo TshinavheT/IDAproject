@@ -103,7 +103,11 @@ Then open http://localhost:8501. Pages:
 Demo files for Q7.4 are in `app/samples/`: `valid_cases.csv` (3 valid municipalities) and
 `invalid_case.csv` (rejected with clear error messages).
 
-## Team
+## Team: Auditors
 | Name | Student number | Role |
 |------|----------------|------|
-|      |                |      |
+| T Chaba | 216089898 | Data governance and preparation (Question 2) |
+| R Tabohane | 217033101 | [role] |
+| T Mabena | 221641221 | [role] |
+| T Tshinavhe | 219537948 | Evaluation, deployment and reproducibility (Questions 3–8, dashboard) |
+| P Khosa | 221335970 | Modelling (first Question 3 run) |

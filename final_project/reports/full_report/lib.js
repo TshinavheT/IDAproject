@@ -42,9 +42,11 @@ const f3 = (x) => Number(x).toFixed(3);
 const pct = (x, d = 1) => (Number(x) * 100).toFixed(d) + "%";
 const sgn = (x) => (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(3);
 
-const runs = (text, extra = {}) => String(text).split(/(\*\*[^*]+\*\*|_[^_]+_)/).filter(Boolean).map((s) =>
+// **bold** and _italic_; underscores inside identifiers (e.g. not_at_risk, audit_q21_v2.py) are left alone.
+const ITALIC = /^_[^_\n]+_$/;
+const runs = (text, extra = {}) => String(text).split(/(\*\*[^*]+\*\*|(?<![\w/.])_[^_\n]+?_(?![\w]))/).filter(Boolean).map((s) =>
   s.startsWith("**") ? new TextRun({ text: s.slice(2, -2), bold: true, ...extra })
-    : /^_[^_]+_$/.test(s) ? new TextRun({ text: s.slice(1, -1), italics: true, ...extra })
+    : ITALIC.test(s) ? new TextRun({ text: s.slice(1, -1), italics: true, ...extra })
       : new TextRun({ text: s, ...extra }));
 
 const P = (text, opts = {}) => new Paragraph({ children: runs(text), spacing: { after: 90, line: 252 }, ...opts });

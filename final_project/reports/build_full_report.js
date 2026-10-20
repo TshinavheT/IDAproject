@@ -7,7 +7,8 @@ const fs = require("fs");
 const path = require("path");
 const L = require("./full_report/lib");
 const { Document, Packer, Paragraph, TextRun, AlignmentType, LevelFormat, Footer, PageNumber, TableOfContents, Table, TableRow, TableCell,
-  WidthType, ShadingType, BorderStyle, SectionType } = L.docx;
+  WidthType, ShadingType, BorderStyle, SectionType, PositionalTab, PositionalTabAlignment, PositionalTabRelativeTo,
+  PositionalTabLeader } = L.docx;
 const { FONT, BODY, SMALL, CONTENT_W, P, H1, runs } = L;
 
 const ROOT = path.resolve(__dirname, "..");
@@ -22,18 +23,19 @@ const text = (t, o = {}) => new TextRun({ text: t, font: FONT, ...o });
 
 // ------------------------------------------------------------------ cover
 const grey = { style: BorderStyle.SINGLE, size: 4, color: "BFC6D4" };
+const COLS = [6000, 3752];
 const memberTable = new Table({
-  width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: [3400, 2000, 4352],
+  width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: COLS,
   rows: [
-    new TableRow({ tableHeader: true, children: ["Name", "Student number", "Role"].map((h, i) => new TableCell({
-      width: { size: [3400, 2000, 4352][i], type: WidthType.DXA }, shading: { fill: INK, type: ShadingType.CLEAR, color: "auto" },
+    new TableRow({ tableHeader: true, children: ["Student name", "Student number"].map((h, i) => new TableCell({
+      width: { size: COLS[i], type: WidthType.DXA }, shading: { fill: INK, type: ShadingType.CLEAR, color: "auto" },
       margins: { top: 70, bottom: 70, left: 100, right: 100 },
       borders: { top: grey, bottom: grey, left: grey, right: grey },
-      children: [new Paragraph({ children: [text(h, { bold: true, color: "FFFFFF", size: 20 })] })] })) }),
-    ...cfg.members.map((m) => new TableRow({ children: [m.name, m.studentNumber, m.role].map((v, i) => new TableCell({
-      width: { size: [3400, 2000, 4352][i], type: WidthType.DXA }, margins: { top: 70, bottom: 70, left: 100, right: 100 },
+      children: [new Paragraph({ children: [text(h, { bold: true, color: "FFFFFF", size: 21 })] })] })) }),
+    ...cfg.members.map((m) => new TableRow({ children: [m.name, m.studentNumber].map((v, i) => new TableCell({
+      width: { size: COLS[i], type: WidthType.DXA }, margins: { top: 70, bottom: 70, left: 100, right: 100 },
       borders: { top: grey, bottom: grey, left: grey, right: grey },
-      children: [new Paragraph({ children: [text(v, { size: 20 })] })] })) })),
+      children: [new Paragraph({ children: [text(v, { size: 21 })] })] })) })),
   ],
 });
 const cover = [
@@ -44,16 +46,31 @@ const cover = [
   new Paragraph({ spacing: { before: 500, after: 700 }, border: { left: { style: BorderStyle.SINGLE, size: 24, color: ACCENT, space: 12 } }, children: [
     text("Central challenge: how can responsible data science help a South African public-service stakeholder identify need, prioritise limited resources, or improve the reliability and reach of a service?", { italics: true, size: 22, color: "444444" })] }),
   memberTable,
-  new Paragraph({ spacing: { before: 400, after: 60 }, children: [text(`Group number: ${cfg.groupNumber}`, { size: 22 })] }),
+  new Paragraph({ spacing: { before: 400, after: 60 }, children: [text(`Group: ${cfg.groupName}`, { size: 22, bold: true })] }),
   new Paragraph({ spacing: { after: 60 }, children: [text(`Lecturer: ${cfg.lecturer}`, { size: 22 })] }),
   new Paragraph({ spacing: { after: 60 }, children: [text(`Submission date: ${cfg.submissionDate}`, { size: 22 })] }),
   new Paragraph({ spacing: { before: 900 }, children: [text("IDA117V  ·  Technical report  ·  S2 2026", { size: 20, color: "777777" })] }),
 ];
 
+// Contents page from the heading pages recorded by export_report_pdf.ps1 (a Word TOC field makes PDF export hang).
+function contentsLines() {
+  const file = path.join(__dirname, "report_headings.json");
+  if (!fs.existsSync(file)) return [P("(Page numbers are added by reports/export_report_pdf.ps1.)")];
+  let items = JSON.parse(fs.readFileSync(file, "utf8").replace(/^﻿/, ""));
+  if (!Array.isArray(items)) items = [items];
+  return items.map((h) => new Paragraph({
+    spacing: { before: h.level === 1 ? 70 : 0, after: 10 },
+    indent: { left: h.level === 1 ? 0 : 360 },
+    children: [text(h.text, { size: h.level === 1 ? 20 : 18, bold: h.level === 1 }),
+      new TextRun({ font: FONT, size: h.level === 1 ? 20 : 18, children: [new PositionalTab({ alignment: PositionalTabAlignment.RIGHT,
+        relativeTo: PositionalTabRelativeTo.MARGIN, leader: PositionalTabLeader.DOT }), String(h.page)] })],
+  }));
+}
+
 // ------------------------------------------------------------------ contents and declaration
 const front = [
   new Paragraph({ pageBreakBefore: true, spacing: { after: 160 }, children: [text("Contents", { bold: true, size: 32, color: INK })] }),
-  new TableOfContents("Contents", { hyperlink: true, headingStyleRange: "1-2" }),
+  ...contentsLines(),
   new Paragraph({ spacing: { before: 360, after: 100 }, children: [text("Declaration and academic-integrity statement", { bold: true, size: 26, color: INK })] }),
   P("This report was prepared by the group named on the cover. Every dataset, library and external source is listed in the References. Questions 1 and 2 were written by team members; their text is reproduced here with minor corrections that bring it in line with the final results (listed in docs/report_merge_notes.md). The project contains no personal data, and no personal, confidential or access-controlled records were uploaded to public repositories or external tools."),
   P("**AI assistance.** An AI coding assistant (Claude, by Anthropic) was used to help write and debug code (the Question 3 re-run, the Questions 4–8 scripts, the dashboard and the scripts that build this report), to draft parts of the text of Questions 3–8 and to merge the team's sections. Commits made with its help are labelled \"Co-Authored-By\" in the repository history. The team reviewed, ran and verified all code and results and takes responsibility for the content. Individual contributions are set out in the signed one-page contribution statement."),
@@ -94,5 +111,5 @@ const doc = new Document({
   ],
 });
 
-const out = path.join(__dirname, "IDA117V_Technical_Report.docx");
+const out = process.env.OUT_DOCX || path.join(__dirname, "IDA117V_Technical_Report.docx");
 Packer.toBuffer(doc).then((buf) => { fs.writeFileSync(out, buf); console.log("Wrote", out); });

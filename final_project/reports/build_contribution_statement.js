@@ -23,19 +23,18 @@ const cell = (text, w, header = false) => new TableCell({
 });
 
 const members = [
-  ["Thapelo ____________", "", "Data governance and preparation lead",
-    "Data acquisition from the Municipal Money API and modelling dataset (src/build_modeling_dataset.py); Q2 data audit, " +
+  ["T Chaba", "216089898", "Data governance and preparation lead",
+    "Data acquisition from the Municipal Money API and modelling dataset (src/build_modeling_dataset.py); Question 2: data audit, " +
     "five EDA figures, time-based split and preprocessing pipeline (src/audit_q21_v2.py, visualize_q22_v2.py, split_q23_v2.py, " +
-    "pipeline_q24.py). Commits: “Question 2 done”, “dataset”."],
-  ["Pamela Khosa", "", "Modelling lead (first Question 3 run)",
+    "pipeline_q24.py) and the Question 2 report section. Commits: “Question 2 done”, “dataset”, “question 2 word doc”."],
+  ["P Khosa", "221335970", "Modelling lead (first Question 3 run)",
     "First baseline and four-model notebook and Question 3 write-up (notebooks/archive). Commit: “Add files via upload”."],
-  ["Tendani Tshinavhe", "", "Evaluation, deployment and reproducibility lead",
+  ["T Tshinavhe", "219537948", "Evaluation, deployment and reproducibility lead",
     "Q3 re-run on the time-based split (src/train_q3.py, neural.py, models.py); Q4 evaluation; Q5 optimisation and test; " +
     "Q6 ablations and McNemar's test; Q7 dashboard (app/) and 2025 forecast (src/forecast_next.py); Q8 fairness and " +
-    "uncertainty analysis, reproducibility package (run_all.py, docs/) and report sections Q4–Q8."],
-  ["", "", "", "Concept note, dataset card and feasibility check (Question 1): ______________________"],
-  ["", "", "", ""],
-  ["", "", "", ""],
+    "uncertainty analysis, reproducibility package (run_all.py, docs/), merged report and presentations."],
+  ["R Tabohane", "217033101", "[role]", "[Specific outputs. Question 1 was committed by GitHub user Tran203: confirm whose account this is.]"],
+  ["T Mabena", "221641221", "[role]", "[Specific outputs]"],
 ];
 
 const doc = new Document({
@@ -47,7 +46,7 @@ const doc = new Document({
     children: [
       new Paragraph({ children: [new TextRun({ text: "IDA117V Group Project — Contribution Statement", bold: true, size: 30, color: "2E3546" })] }),
       new Paragraph({ spacing: { after: 120 }, children: [new TextRun({
-        text: "Predicting Municipal Audit Outcomes · Group number: ______ · Lecturer: ____________________ · Submission date: ____________",
+        text: "Predicting Municipal Audit Outcomes · Group: Auditors · Lecturer: ____________________ · Submission date: ____________",
         size: 19, color: "444444" })] }),
       new Paragraph({ spacing: { after: 160 }, children: [new TextRun({ size: 18, text:
         "Each member's role and specific outputs are listed below. Pre-filled entries come from the repository's commit history; " +

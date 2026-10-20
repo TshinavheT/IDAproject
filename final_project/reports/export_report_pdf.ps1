@@ -1,38 +1,55 @@
-# Opens reports\IDA117V_Technical_Report.docx in Microsoft Word, refreshes the table of contents,
-# saves the .docx and exports reports\IDA117V_Technical_Report.pdf. Prints the page of every Heading 1/2.
-# The work is done on a copy in the local temp folder (Word can hang on OneDrive-synced folders) and copied back.
-# Run:  powershell -File reports\export_report_pdf.ps1
+# Two-pass export of the merged report (no Word TOC field: Word hangs exporting one).
+#   1. build the .docx and record the displayed page of every Heading 1/2 in reports/report_headings.json
+#   2. rebuild with a contents page listing those pages, and export the PDF
+# Each Word step runs in its own PowerShell process (reusing Word in one process can hang).
+# Run from anywhere:  powershell -File reports\export_report_pdf.ps1
+param([string]$Step = "all")
 $reports = $PSScriptRoot
-$work = Join-Path $env:TEMP "ida_report_export"
+$root = Split-Path $reports -Parent
+# A fresh folder per run: Word can hang when exporting into a folder used by an earlier (killed) Word session.
+if ($env:IDA_REPORT_WORK) { $work = $env:IDA_REPORT_WORK } else { $work = Join-Path $env:TEMP ("ida_report_" + (Get-Date -Format "yyyyMMdd_HHmmss")); $env:IDA_REPORT_WORK = $work }
 New-Item -ItemType Directory -Force $work | Out-Null
 $docx = Join-Path $work "IDA117V_Technical_Report.docx"
 $pdf = Join-Path $work "IDA117V_Technical_Report.pdf"
-Copy-Item (Join-Path $reports "IDA117V_Technical_Report.docx") $docx -Force
-$log = { param($m) Write-Host ("[{0:HH:mm:ss}] {1}" -f (Get-Date), $m) }
-$word = New-Object -ComObject Word.Application
-$word.Visible = $false
-$word.DisplayAlerts = 0
-try {
-  & $log "opening"
-  $doc = $word.Documents.Open($docx)
-  & $log "updating table of contents"
-  $doc.Repaginate()
-  if ($doc.TablesOfContents.Count -gt 0) { $doc.TablesOfContents.Item(1).Update() }
-  $doc.Repaginate()
-  $doc.Save()
-  & $log "exporting PDF"
-  $doc.ExportAsFixedFormat($pdf, 17)
-  "Total pages (PDF): " + $doc.ComputeStatistics(2)
-  "Words: " + $doc.ComputeStatistics(0)
-  $s2 = $doc.Sections.Item(2).Range; $s2.Collapse(1)
-  $s3 = $doc.Sections.Item(3).Range; $s3.Collapse(1)
-  "Body starts on PDF page " + $s2.Information(3) + "; appendices start on PDF page " + $s3.Information(3)
-  # Headings listed from the table of contents entries (fast) rather than looping over every paragraph.
-  if ($doc.TablesOfContents.Count -gt 0) {
-    foreach ($para in $doc.TablesOfContents.Item(1).Range.Paragraphs) { $line = $para.Range.Text.Trim(); if ($line -ne "") { $line -replace "\s+", " " } }
-  }
-  $doc.Close($false)
-  & $log "done"
-} finally { $word.Quit() }
+$headingsJson = Join-Path $reports "report_headings.json"
+
+function Open-Doc { $w = New-Object -ComObject Word.Application; $w.Visible = $false; $w.DisplayAlerts = 0; return $w }
+
+if ($Step -eq "headings") {
+  $word = Open-Doc
+  try {
+    $doc = $word.Documents.Open($docx, $false, $true)
+    $items = @()
+    foreach ($p in $doc.Paragraphs) {
+      $lvl = $p.OutlineLevel
+      if ($lvl -eq 1 -or $lvl -eq 2) {
+        $t = $p.Range.Text.Trim()
+        if ($t -ne "") { $items += [pscustomobject]@{ level = [int]$lvl; text = $t; page = [int]$p.Range.Information(1); abs = [int]$p.Range.Information(3) } }
+      }
+    }
+    $items | ConvertTo-Json | Out-File $headingsJson -Encoding utf8
+    $doc.Close($false)
+  } finally { $word.Quit() }
+  exit 0
+}
+if ($Step -eq "pdf") {
+  $word = Open-Doc
+  try {
+    $doc = $word.Documents.Open($docx, $false, $true)
+    $doc.ExportAsFixedFormat($pdf, 17)
+    "Total PDF pages: " + $doc.ComputeStatistics(2)
+    $doc.Close($false)
+  } finally { $word.Quit() }
+  exit 0
+}
+
+$env:OUT_DOCX = $docx
+Push-Location $root
+node reports/build_full_report.js
+powershell -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath -Step headings
+node reports/build_full_report.js
+powershell -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath -Step pdf
+Pop-Location
 Copy-Item $docx (Join-Path $reports "IDA117V_Technical_Report.docx") -Force
 Copy-Item $pdf (Join-Path $reports "IDA117V_Technical_Report.pdf") -Force
+Get-Content $headingsJson -Raw | ConvertFrom-Json | Where-Object { $_.level -eq 1 } | ForEach-Object { "{0,3}  {1}" -f $_.page, $_.text }
