@@ -77,7 +77,6 @@ so its numbers match the report. Rebuild and re-execute them with `python notebo
 
 ## Live demo and deployment
 - **Live dashboard:** _link added after deployment_ (Streamlit Community Cloud)
-- **Presentation slides:** https://claude.ai/artifact/Kp9praEutWvN9bFA9tCMPU (open from the owner's Share menu)
 
 The dashboard is deployed on [Streamlit Community Cloud](https://share.streamlit.io) straight from GitHub:
 1. Sign in at https://share.streamlit.io with the GitHub account that owns the repository.
