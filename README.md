@@ -2,7 +2,11 @@
 
 > **Latest complete version:** see [`final_project/`](final_project/README.md) — the corrected Question 3,
 > Questions 4–8, the dashboard (`final_project/app/`), report sections and the reproducible pipeline
-> (`python run_all.py`). The original Question 2 and Question 3 work below is unchanged.
+> (`python run_all.py`). The original Question 2 work below is unchanged.
+>
+> **Notebooks:** one executed notebook per report question is in [`final_project/notebooks/`](final_project/notebooks)
+> (`01_Q1_Q2` … `07_Q8`). `Baseline&Models.ipynb` in this folder has been updated to the corrected Question 3
+> (time-based split); the original is kept at `final_project/notebooks/archive/Q3_first_run_random_split.ipynb`.
 
 IDA117V Introduction to Data Science group project (S2 2026).
 

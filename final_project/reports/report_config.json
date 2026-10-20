@@ -1,14 +1,29 @@
 {
   "_help": "Edit this file, then run: powershell -File reports/export_report_pdf.ps1 (rebuilds the .docx and the PDF). Leave liveUrl empty until the dashboard is hosted.",
   "groupName": "Auditors",
-  "lecturer": "[Lecturer name]",
-  "submissionDate": "[Submission date]",
+  "lecturer": "Dr Dan Masethe",
+  "submissionDate": "20/10/2026",
   "liveUrl": "",
   "members": [
-    {"name": "T Chaba", "studentNumber": "216089898"},
-    {"name": "R Tabohane", "studentNumber": "217033101"},
-    {"name": "T Mabena", "studentNumber": "221641221"},
-    {"name": "T Tshinavhe", "studentNumber": "219537948"},
-    {"name": "P Khosa", "studentNumber": "221335970"}
+    {
+      "name": "T Chaba",
+      "studentNumber": "216089898"
+    },
+    {
+      "name": "R Tabohane",
+      "studentNumber": "217033101"
+    },
+    {
+      "name": "T Mabena",
+      "studentNumber": "221641221"
+    },
+    {
+      "name": "T Tshinavhe",
+      "studentNumber": "219537948"
+    },
+    {
+      "name": "P Khosa",
+      "studentNumber": "221335970"
+    }
   ]
 }

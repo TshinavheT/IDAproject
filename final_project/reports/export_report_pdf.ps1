@@ -47,6 +47,7 @@ $env:OUT_DOCX = $docx
 Push-Location $root
 node reports/build_full_report.js
 powershell -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath -Step headings
+Get-Process WINWORD -ErrorAction SilentlyContinue | Stop-Process -Force; Start-Sleep -Seconds 3  # let the first Word instance exit fully
 node reports/build_full_report.js
 powershell -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath -Step pdf
 Pop-Location

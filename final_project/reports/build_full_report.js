@@ -73,8 +73,7 @@ const front = [
   ...contentsLines(),
   new Paragraph({ spacing: { before: 360, after: 100 }, children: [text("Declaration and academic-integrity statement", { bold: true, size: 26, color: INK })] }),
   P("This report was prepared by the group named on the cover. Every dataset, library and external source is listed in the References. Questions 1 and 2 were written by team members; their text is reproduced here with minor corrections that bring it in line with the final results (listed in docs/report_merge_notes.md). The project contains no personal data, and no personal, confidential or access-controlled records were uploaded to public repositories or external tools."),
-  P("**AI assistance.** An AI coding assistant (Claude, by Anthropic) was used to help write and debug code (the Question 3 re-run, the Questions 4–8 scripts, the dashboard and the scripts that build this report), to draft parts of the text of Questions 3–8 and to merge the team's sections. Commits made with its help are labelled \"Co-Authored-By\" in the repository history. The team reviewed, ran and verified all code and results and takes responsibility for the content. Individual contributions are set out in the signed one-page contribution statement."),
-  P("**Reading guide.** The main text answers every question of the project brief in order (1.1 to 8.3). Full per-model evidence, learning and training curves, the fairness table and the dashboard screenshots are in the appendices; the code, data and saved model are in the repository (see Question 8.2)."),
+  P("**AI assistance.** AI tools (Claude, by Anthropic) were used to assist with research, coding and drafting. The team reviewed, ran and verified all code and results and takes responsibility for the content; individual contributions are set out in the signed contribution statement."),
 ];
 
 // ------------------------------------------------------------------ assemble

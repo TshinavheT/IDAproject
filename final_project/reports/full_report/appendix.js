@@ -84,7 +84,8 @@ function appendices() {
     ...figure("reports/figures/app/app_explorer.png", "Figure A.10: Explorer with filters, clickable category charts, the municipality table and the biggest risk increases.", 330),
     ...figure("reports/figures/app/app_dialog_recall.png", "Figure A.11: Recall details: the 13 at-risk municipalities missed in the test year (every one had a clean audit the year before).", 480),
     ...figure("reports/figures/app/app_profile_trends.png", "Figure A.12: Profile of Emfuleni: financial-health trends against the national median and the peer comparison against Treasury norms.", 440),
-    ...figure("reports/figures/app/app_invalid_input.jpg", "Figure A.7: Invalid manual input (total expenditure = 0) rejected with a clear error message.", 440),
+    ...figure("reports/figures/app/app_risk_check_result.png", "Figure A.13: Risk check: forecast for Emfuleni with the predicted class, probability gauge, confidence, plain-language reasons and feature contributions.", 400),
+    ...figure("reports/figures/app/app_invalid_input.png", "Figure A.7: Invalid manual input (total expenditure = 0) rejected with a clear error message.", 400),
 
     H2("Appendix E: Execution order"),
     P("python run_all.py runs these steps in order from the project root (about 4 minutes on a laptop CPU); seed 42 throughout.", { spacing: { after: 60 } }),

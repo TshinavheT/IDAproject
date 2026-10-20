@@ -46,7 +46,7 @@ const doc = new Document({
     children: [
       new Paragraph({ children: [new TextRun({ text: "IDA117V Group Project — Contribution Statement", bold: true, size: 30, color: "2E3546" })] }),
       new Paragraph({ spacing: { after: 120 }, children: [new TextRun({
-        text: "Predicting Municipal Audit Outcomes · Group: Auditors · Lecturer: ____________________ · Submission date: ____________",
+        text: "Predicting Municipal Audit Outcomes · Group: Auditors · Lecturer: Dr Dan Masethe · Submission date: 20/10/2026",
         size: 19, color: "444444" })] }),
       new Paragraph({ spacing: { after: 160 }, children: [new TextRun({ size: 18, text:
         "Each member's role and specific outputs are listed below. Pre-filled entries come from the repository's commit history; " +
@@ -64,8 +64,7 @@ const doc = new Document({
         "All members confirm that they understand and can defend the complete pipeline and user interface, that every dataset, " +
         "library and external source is referenced, and that the contributions above are accurate." })] }),
       new Paragraph({ children: [new TextRun({ size: 18, text:
-        "AI assistance: an AI coding assistant (Claude, by Anthropic) was used to help write and debug code and draft parts of the " +
-        "Question 4–8 text; commits made with its help are labelled in the repository. The team reviewed and verified all of it." })] }),
+        "AI assistance: AI tools (Claude, by Anthropic) were used to assist with research, coding and drafting; the team reviewed and verified all of it." })] }),
     ],
   }],
 });
