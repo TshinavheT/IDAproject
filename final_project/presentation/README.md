@@ -16,4 +16,4 @@ To rebuild the PDFs and standalone HTML versions after editing a slide (needs Mi
 node presentation/build_pdf.js
 ```
 
-Placeholders still to fill in: group number, member names, lecturer and the live dashboard link.
+Presenters are named on each slide footer and in the speaker notes, following the agreed roles in the contribution statement.
